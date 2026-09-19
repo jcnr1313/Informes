@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Informes Técnicos de Ascensores</title>
+    <title>Generador Profesional de Informes Técnicos de Ascensores</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para iconos -->
@@ -33,17 +33,12 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-wide">Gestión de Informes Técnicos</h1>
-                    <p class="text-xs text-indigo-300">Asistencia, averías y redacción inteligente</p>
+                    <p class="text-xs text-indigo-300">Asistencia avanzada y redacción técnica profesional</p>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
-                <button type="button" id="btn-open-preview" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-eye"></i> Vista Previa del Informe
-                </button>
-                <div class="text-xs bg-indigo-950 px-3.5 py-2 rounded-xl border border-indigo-800 flex items-center gap-2 shadow-inner">
-                    <i class="fa-regular fa-calendar-days text-indigo-400"></i>
-                    <span id="header-date" class="font-medium text-slate-200">--/--/----</span>
-                </div>
+            <div class="text-xs bg-indigo-950 px-3.5 py-2 rounded-xl border border-indigo-800 flex items-center gap-2 shadow-inner">
+                <i class="fa-regular fa-calendar-days text-indigo-400"></i>
+                <span id="header-date" class="font-medium text-slate-200">--/--/----</span>
             </div>
         </div>
     </header>
@@ -56,7 +51,7 @@
                 <h2 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-1">
                     <i class="fa-solid fa-pen-to-square text-indigo-600"></i> Datos y Palabras Clave de la Intervención
                 </h2>
-                <p class="text-xs text-slate-500">Selecciona palabras clave o componentes para redactar el informe técnico profesionalmente.</p>
+                <p class="text-xs text-slate-500">Selecciona componentes y causas para generar automáticamente el informe técnico detallado.</p>
             </div>
 
             <!-- Datos Generales -->
@@ -86,22 +81,22 @@
 
             <hr class="border-slate-100">
 
-            <!-- Botones de Opciones / Palabras Clave -->
+            <!-- Opciones / Palabras Clave -->
             <div>
                 <div class="flex justify-between items-center mb-2">
-                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">Palabras Clave (Causas y Componentes)</label>
+                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">Palabras Clave y Componentes</label>
                     <span class="text-[11px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-medium">Haz clic para activar</span>
                 </div>
-                <div id="options-container" class="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-3 bg-slate-50/70 border border-slate-200 rounded-xl shadow-inner">
+                <div id="options-container" class="flex flex-wrap gap-2 max-h-52 overflow-y-auto p-3 bg-slate-50/70 border border-slate-200 rounded-xl shadow-inner">
                     <!-- Generado por JS -->
                 </div>
             </div>
 
             <!-- Entrada personalizada -->
             <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="custom-input">Añadir palabra clave o elemento propio</label>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="custom-input">Añadir elemento o anomalía personalizada</label>
                 <div class="flex gap-2">
-                    <input type="text" id="custom-input" placeholder="Ej: Holgura en zapatas de freno..." 
+                    <input type="text" id="custom-input" placeholder="Ej: Desgaste en contactos de relé..." 
                         class="flex-1 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
                     <button type="button" id="btn-add-custom" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition shadow-sm flex items-center gap-1.5 shrink-0">
                         <i class="fa-solid fa-plus"></i> Añadir
@@ -121,7 +116,7 @@
                     </label>
                 </div>
                 <div id="photos-preview-container" class="flex flex-wrap gap-2 mt-3 empty:hidden">
-                    <!-- Miniaturas de fotos cargadas -->
+                    <!-- Miniaturas -->
                 </div>
             </div>
 
@@ -130,55 +125,70 @@
             </button>
         </section>
 
-        <!-- Vista Rápida y Acciones (Derecha) -->
+        <!-- Panel de Acciones y Generación (Derecha) -->
         <section class="lg:col-span-5 flex flex-col">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 flex-1 flex flex-col justify-between">
                 
-                <div>
-                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                            <i class="fa-solid fa-wand-magic-sparkles text-indigo-600"></i> Resumen de Redacción
+                            <i class="fa-solid fa-wand-magic-sparkles text-indigo-600"></i> Estado del Informe
                         </h2>
                         <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> IA Activa
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Listo
                         </span>
                     </div>
 
-                    <div class="space-y-4 text-xs">
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 space-y-2">
-                            <div class="flex justify-between">
-                                <span class="font-bold text-slate-400 uppercase text-[10px]">Comunidad:</span>
-                                <span id="summary-address" class="font-medium text-slate-700 italic">Sin especificar</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-bold text-slate-400 uppercase text-[10px]">Fecha:</span>
-                                <span id="summary-date" class="font-medium text-slate-700">--/--/----</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-bold text-slate-400 uppercase text-[10px]">Elementos clave:</span>
-                                <span id="summary-count" class="font-medium text-indigo-600">0 detectados</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-bold text-slate-400 uppercase text-[10px]">Fotografías:</span>
-                                <span id="summary-photos-count" class="font-medium text-indigo-600">0 adjuntas</span>
-                            </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2.5 text-xs">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-slate-400 uppercase text-[10px]">Comunidad:</span>
+                            <span id="summary-address" class="font-medium text-slate-700 italic">Sin especificar</span>
                         </div>
+                        <div class="flex justify-between">
+                            <span class="font-bold text-slate-400 uppercase text-[10px]">Fecha:</span>
+                            <span id="summary-date" class="font-medium text-slate-700">--/--/----</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-bold text-slate-400 uppercase text-[10px]">Elementos seleccionados:</span>
+                            <span id="summary-count" class="font-medium text-indigo-600 font-bold">0 elementos</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-bold text-slate-400 uppercase text-[10px]">Fotografías adjuntas:</span>
+                            <span id="summary-photos-count" class="font-medium text-indigo-600 font-bold">0 fotos</span>
+                        </div>
+                    </div>
 
-                        <div class="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100 text-slate-600 leading-relaxed">
-                            <p class="font-semibold text-indigo-950 mb-1"><i class="fa-solid fa-circle-info text-indigo-600 mr-1"></i> Generación automática lista</p>
-                            Haz clic en <strong>Vista Previa del Informe</strong> para comprobar el diagnóstico técnico detallado, las recomendaciones y las fotos antes de descargar el documento en Word o PDF.
+                    <!-- Selector de Formato de Redacción -->
+                    <div class="bg-indigo-50/60 p-4 rounded-xl border border-indigo-100 space-y-2">
+                        <label class="block text-xs font-bold text-indigo-950 uppercase tracking-wider">Modo de Redacción del Informe</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" id="btn-mode-detailed" class="py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-file-lines"></i> Técnico Extenso
+                            </button>
+                            <button type="button" id="btn-mode-brief" class="py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-compress"></i> Abreviado
+                            </button>
                         </div>
+                        <p class="text-[11px] text-indigo-900/75 italic mt-1" id="mode-description">
+                            Genera un informe altamente profesional, con análisis detallado de causas, normativas y acciones correctoras.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Botones de Exportación -->
-                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-3">
-                    <button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-xs">
-                        <i class="fa-solid fa-file-word text-base"></i> Descargar Word
+                <!-- Botón Principal de Vista Previa y Descargas -->
+                <div class="mt-6 pt-4 border-t border-slate-100 space-y-3">
+                    <button id="btn-open-preview" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-eye text-base"></i> Ver Vista Previa del Informe
                     </button>
-                    <button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-xs">
-                        <i class="fa-solid fa-file-pdf text-base"></i> Descargar PDF
-                    </button>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-solid fa-file-word text-sm"></i> Descargar Word
+                        </button>
+                        <button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-solid fa-file-pdf text-sm"></i> Descargar PDF
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -192,10 +202,10 @@
             <!-- Cabecera del Modal -->
             <div class="bg-indigo-900 text-white px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-file-lines text-indigo-300"></i>
-                    <h3 class="font-bold text-sm tracking-wide">Vista Previa del Informe Técnico</h3>
+                    <i class="fa-solid fa-elevator text-indigo-300"></i>
+                    <h3 class="font-bold text-sm tracking-wide">Vista Previa Oficial del Informe Técnico</h3>
                 </div>
-                <button type="button" id="btn-close-modal" class="text-indigo-200 hover:text-white p-1 rounded-lg transition">
+                <button type="button" id="btn-close-modal" class="text-indigo-200 hover:text-white p-1 rounded-lg transition cursor-pointer">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
@@ -205,8 +215,8 @@
                 <!-- Cabecera Documento -->
                 <div class="border-b border-slate-200 pb-4 flex justify-between items-start">
                     <div>
-                        <h2 class="text-xl font-extrabold text-indigo-950 uppercase tracking-wide">Informe Técnico de Ascensores</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Asistencia técnica, diagnóstico y verificación de componentes</p>
+                        <h2 class="text-xl font-extrabold text-indigo-950 uppercase tracking-wide">Informe Técnico de Mantenimiento y Averías</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Servicio Oficial de Asistencia Técnica en Aparatos Elevadores</p>
                     </div>
                     <div class="text-right">
                         <span class="text-[10px] bg-slate-100 text-slate-600 px-3 py-1 rounded-md font-mono uppercase font-semibold border border-slate-200">Ref: IT-ASC-2026</span>
@@ -227,55 +237,56 @@
 
                 <!-- Redacción Generada -->
                 <div class="space-y-3">
-                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">1. Diagnóstico Técnico y Motivo de Asistencia</h4>
-                    <div id="report-diagnostic" class="text-xs text-slate-700 leading-relaxed bg-white p-2">
-                        <!-- Generado dinámicamente -->
+                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">1. Diagnóstico Técnico y Estado de la Instalación</h4>
+                    <div id="report-diagnostic" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-2">
+                        <!-- Dinámico -->
                     </div>
                 </div>
 
                 <div class="space-y-3">
-                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">2. Acciones Realizadas y Recomendaciones</h4>
-                    <div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2">
-                        <!-- Generado dinámicamente -->
+                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">2. Acciones Correctoras y Recomendaciones Técnicas</h4>
+                    <div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-2">
+                        <!-- Dinámico -->
                     </div>
                 </div>
 
                 <!-- Sección de Fotos -->
                 <div id="report-photos-section" class="space-y-3 hidden">
-                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">3. Registro Fotográfico</h4>
+                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">3. Registro Fotográfico de la Intervención</h4>
                     <div id="report-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                        <!-- Fotos añadidas -->
+                        <!-- Dinámico -->
                     </div>
                 </div>
 
                 <!-- Pie de Firma -->
                 <div class="pt-8 border-t border-slate-200 text-xs text-slate-500 flex justify-between items-end mt-12">
                     <div>
-                        <p class="font-semibold text-slate-700">Servicio Técnico Autorizado</p>
-                        <p class="text-[10px] text-slate-400">Control de calidad y mantenimiento preventivo/correctivo</p>
+                        <p class="font-semibold text-slate-700">Técnico Especialista Autorizado</p>
+                        <p class="text-[10px] text-slate-400">Cumplimiento de normativa de seguridad para ascensores</p>
                     </div>
                     <div class="text-right">
                         <div class="border-b border-slate-400 w-40 mb-1.5 h-8"></div>
-                        <span class="text-[10px] text-slate-600 uppercase font-semibold">Firma y Sello del Técnico</span>
+                        <span class="text-[10px] text-slate-600 uppercase font-semibold">Firma y Sello</span>
                     </div>
                 </div>
             </div>
 
             <!-- Footer Modal -->
             <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex justify-end gap-3">
-                <button type="button" id="btn-close-modal-2" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold transition">
+                <button type="button" id="btn-close-modal-2" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer">
                     Cerrar Vista
                 </button>
-                <button type="button" id="btn-modal-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+                <button type="button" id="btn-modal-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-file-pdf"></i> Descargar PDF Oficial
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Script de lógica de la aplicación -->
+    <!-- Script de lógica -->
     <script>
         const availableOptions = [
+            "transformador", "limitador", "micros", "cuñas", "rozaderas",
             "ha filtrado agua", "por tormenta", "por golpe", "por mal uso", 
             "por sobrecargar el ascensor", "acto vandálico", "lluvia", "inundación", 
             "placa en corto", "variador de puertas", "variador maniobra", "puertas de cabina", 
@@ -286,6 +297,7 @@
 
         let selectedIngredients = [];
         let uploadedPhotos = [];
+        let reportMode = 'detailed'; // 'detailed' o 'brief'
 
         const optionsContainer = document.getElementById('options-container');
         const inputAddress = document.getElementById('input-address');
@@ -294,6 +306,11 @@
         const customInput = document.getElementById('custom-input');
         const btnAddCustom = document.getElementById('btn-add-custom');
         const btnReset = document.getElementById('btn-reset');
+        
+        const btnModeDetailed = document.getElementById('btn-mode-detailed');
+        const btnModeBrief = document.getElementById('btn-mode-brief');
+        const modeDescription = document.getElementById('mode-description');
+
         const btnOpenPreview = document.getElementById('btn-open-preview');
         const previewModal = document.getElementById('preview-modal');
         const btnCloseModal = document.getElementById('btn-close-modal');
@@ -378,13 +395,28 @@
             const addr = inputAddress.value.trim();
             summaryAddress.textContent = addr ? addr : 'Sin especificar';
             summaryAddress.classList.toggle('italic', !addr);
-            summaryCount.textContent = `${selectedIngredients.length} detectados`;
-            summaryPhotosCount.textContent = `${uploadedPhotos.length} adjuntas`;
+            summaryCount.textContent = `${selectedIngredients.length} elementos`;
+            summaryPhotosCount.textContent = `${uploadedPhotos.length} fotos`;
         }
 
-        // Generador inteligente de redacción técnica a partir de palabras clave
+        // Cambio de Modo de Redacción
+        btnModeDetailed.addEventListener('click', () => {
+            reportMode = 'detailed';
+            btnModeDetailed.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5';
+            btnModeBrief.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5';
+            modeDescription.textContent = 'Genera un informe altamente profesional, con análisis detallado de causas, normativas y acciones correctoras.';
+        });
+
+        btnModeBrief.addEventListener('click', () => {
+            reportMode = 'brief';
+            btnModeBrief.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5';
+            btnModeDetailed.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5';
+            modeDescription.textContent = 'Genera un parte de asistencia rápido, conciso y directo al grano con los puntos clave.';
+        });
+
+        // Generador de Redacción Técnica Profesional Avanzada
         function generateTechnicalTexts() {
-            const addr = inputAddress.value.trim() || 'la instalación cliente';
+            const addr = inputAddress.value.trim() || 'la instalación del cliente';
             
             if (selectedIngredients.length === 0) {
                 reportDiagnostic.innerHTML = `<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el diagnóstico.</p>`;
@@ -392,18 +424,66 @@
                 return;
             }
 
-            let diagHTML = `<p class="mb-2">Tras la visita de inspección y asistencia técnica realizada en <strong>${addr}</strong>, se han detectado y analizado las siguientes incidencias y anomalías en los equipos:</p><ul class="list-disc pl-5 space-y-1">`;
-            let recHTML = `<p class="mb-2">Para garantizar la óptima seguridad de funcionamiento y alargar la vida útil del ascensor, se establecen las siguientes actuaciones y recomendaciones técnicas:</p><ul class="list-disc pl-5 space-y-1">`;
+            if (reportMode === 'brief') {
+                // Modo Abreviado
+                let diagHTML = `<p class="mb-2">Intervención realizada en <strong>${addr}</strong> por incidencias detectadas en los siguientes componentes:</p><ul class="list-disc pl-5 space-y-1">`;
+                let recHTML = `<p class="mb-2">Acciones correctoras aplicadas:</p><ul class="list-disc pl-5 space-y-1">`;
+
+                selectedIngredients.forEach(item => {
+                    const formatted = item.charAt(0).toUpperCase() + item.slice(1);
+                    diagHTML += `<li>Revisión de ${formatted}: Anotar anomalía operativa.</li>`;
+                    recHTML += `<li>Sustitución, ajuste o verificación de ${formatted} completada.</li>`;
+                });
+                diagHTML += `</ul>`;
+                recHTML += `</ul>`;
+                reportDiagnostic.innerHTML = diagHTML;
+                reportRecommendations.innerHTML = recHTML;
+                return;
+            }
+
+            // Modo Técnico Extenso y Profesional por Defecto
+            let diagHTML = `
+                <p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita de inspección, diagnóstico y verificación funcional en el aparato elevador ubicado en <strong>${addr}</strong>. Tras someter el sistema a las pruebas pertinentes de control y seguridad, se emite el siguiente dictamen técnico detallado:</p>
+                <p class="mb-2 font-semibold text-indigo-950">Anomalías y parámetros analizados en la intervención:</p>
+                <ul class="list-disc pl-5 space-y-2">
+            `;
+
+            let recHTML = `
+                <p class="mb-3">Con el firme propósito de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (UNE-EN 81), mitigar riesgos de averías imprevistas y asegurar el confort y la fiabilidad para los usuarios de la comunidad, se establecen las siguientes directrices y actuaciones correctoras:</p>
+                <ul class="list-disc pl-5 space-y-2">
+            `;
 
             selectedIngredients.forEach(item => {
                 const formatted = item.charAt(0).toUpperCase() + item.slice(1);
-                diagHTML += `<li><strong>Incidencia en ${formatted}:</strong> Se registra anomalía operativa asociada directamente con ${item}, comprometiendo temporalmente el servicio estándar del equipo.</li>`;
-                recHTML += `<li>Proceder a la revisión exhaustiva, limpieza, ajuste o sustitución de componentes en ${formatted} según normativas vigentes de seguridad.</li>`;
+                
+                // Explicaciones técnicas adaptadas según el componente
+                let descDiag = `Se detecta fallo o desviación operativa en el componente <strong>${formatted}</strong>, afectando al rendimiento general del sistema y provocando paradas o lecturas anómalas en el bucle de seguridad.`;
+                let descRec = `Proceder a la sustitución, calibración o ajuste estructural de <strong>${formatted}</strong>, verificando continuidad eléctrica, apriete de bornes y tolerancias mecánicas según especificaciones del fabricante.`;
+
+                if (item === 'transformador') {
+                    descDiag = `Se registra caída de tensión o inestabilidad en las líneas de alimentación de baja tensión secundarias procedentes del <strong>transformador</strong>, comprometiendo la estabilidad de la maniobra.`;
+                    descRec = `Comprobar tensiones primarias y secundarias del transformador, verificar protecciones térmicas y asegurar un correcto aislamiento galvánico.`;
+                } else if (item === 'limitador') {
+                    descDiag = `Anomalía en el sistema mecánico de sobrevelocidad y disparo del <strong>limitador</strong> de velocidad de cabina, requiriendo comprobación del sincronismo.`;
+                    descRec = `Verificar la calibración del paracaídas, el tensado del cable del limitador y el correcto rearte de los contactos eléctricos de seguridad asociados.`;
+                } else if (item === 'micros') {
+                    descDiag = `Desajuste o fallo de contactos en los interruptores <strong>micros</strong> de seguridad (puertas, levas o finales de carrera), provocando aperturas indebidas del circuito de seguridades.`;
+                    descRec = `Realinear, limpiar y comprobar la histéresis y el correcto accionamiento físico de los micros de seguridad.`;
+                } else if (item === 'cuñas') {
+                    descDiag = `Desgaste o aproximación irregular en el conjunto de <strong>cuñas</strong> del sistema de paracaídas, comprometiendo la respuesta ante una emergencia mecánica.`;
+                    descRec = `Inspeccionar el estado de fricción de las cuñas sobre las guías, limpiar restos de suciedad y ajustar la holgura reglamentaria.`;
+                } else if (item === 'rozaderas') {
+                    descDiag = `Holgura excesiva o desgaste avanzado en las <strong>rozaderas</strong> de cabina o contrapeso, generando vibraciones, ruido y roce directo contra las guías.`;
+                    descRec = `Sustituir los patines o pastillas de las rozaderas y realizar una nivelación y alineación geométrica de la cabina respecto a las guías.`;
+                }
+
+                diagHTML += `<li><strong class="text-slate-900">${formatted}:</strong> ${descDiag}</li>`;
+                recHTML += `<li><strong class="text-slate-900">${formatted}:</strong> ${descRec}</li>`;
             });
 
             diagHTML += `</ul>`;
             recHTML += `</ul>`;
-
+            
             reportDiagnostic.innerHTML = diagHTML;
             reportRecommendations.innerHTML = recHTML;
         }
@@ -434,12 +514,12 @@
             }
 
             uploadedPhotos.forEach((photo, index) => {
-                // Miniatura en panel principal
+                // Miniatura panel principal
                 const thumb = document.createElement('div');
                 thumb.className = 'relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shadow-2xs group';
                 thumb.innerHTML = `
                     <img src="${photo}" class="w-full h-full object-cover">
-                    <button type="button" class="absolute top-1 right-1 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-80 hover:opacity-100 transition">
+                    <button type="button" class="absolute top-1 right-1 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-80 hover:opacity-100 transition cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 `;
@@ -452,10 +532,10 @@
 
                 // Grid dentro del informe modal
                 const reportImg = document.createElement('div');
-                reportImg.className = 'border border-slate-200 rounded-xl overflow-hidden bg-slate-50 p-1';
+                reportImg.className = 'border border-slate-200 rounded-xl overflow-hidden bg-slate-50 p-1.5';
                 reportImg.innerHTML = `
                     <img src="${photo}" class="w-full h-32 object-cover rounded-lg">
-                    <p class="text-[10px] text-slate-500 text-center mt-1 font-mono">Ref. Fotográfica 0${index + 1}</p>
+                    <p class="text-[10px] text-slate-500 text-center mt-1 font-mono font-semibold">Anexo Fotográfico 0${index + 1}</p>
                 `;
                 reportPhotosGrid.appendChild(reportImg);
             });
@@ -502,25 +582,34 @@
         btnCloseModal.addEventListener('click', closeModal);
         btnCloseModal2.addEventListener('click', closeModal);
 
-        // Exportación a Word (.doc)
+        // Exportación a Word (.doc) robusta con contenido completo
         btnDownloadWord.addEventListener('click', () => {
             const address = inputAddress.value.trim() || 'Sin_especificar';
             const dateStr = summaryDate.textContent;
             
+            // Generar textos actuales para el Word
+            generateTechnicalTexts();
+            const diagText = reportDiagnostic.innerHTML;
+            const recText = reportRecommendations.innerHTML;
+
             let htmlContent = `
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-                <head><meta charset='utf-8'><title>Informe Técnico</title></head>
-                <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 20px;">
+                <head><meta charset='utf-8'><title>Informe Técnico de Ascensores</title></head>
+                <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 25px;">
                     <h2 style="color: #1e1b4b; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px;">INFORME TÉCNICO DE ASCENSORES</h2>
-                    <p><strong>Comunidad de Vecinos:</strong> ${address}</p>
+                    <p><strong>Comunidad de Propietarios:</strong> ${address}</p>
                     <p><strong>Fecha del Servicio:</strong> ${dateStr}</p>
+                    <p><strong>Elementos Registrados:</strong> ${selectedIngredients.length > 0 ? selectedIngredients.join(', ') : 'Ninguno'}</p>
                     
                     <h3 style="color: #312e81; margin-top: 20px;">1. Diagnóstico Técnico</h3>
-                    <p>Elementos clave y anomalías detectadas: ${selectedIngredients.join(', ')}.</p>
+                    <div>${diagText}</div>
+
+                    <h3 style="color: #312e81; margin-top: 20px;">2. Acciones y Recomendaciones</h3>
+                    <div>${recText}</div>
             `;
 
             if (uploadedPhotos.length > 0) {
-                htmlContent += `<h3 style="color: #312e81; margin-top: 20px;">2. Registro Fotográfico</h3><p>Se han adjuntado ${uploadedPhotos.length} fotografías en la inspección.</p>`;
+                htmlContent += `<h3 style="color: #312e81; margin-top: 20px;">3. Registro Fotográfico</h3><p>Se han adjuntado ${uploadedPhotos.length} fotografías en esta intervención técnica.</p>`;
             }
 
             htmlContent += `
@@ -541,7 +630,7 @@
             URL.revokeObjectURL(url);
         });
 
-        // Exportación a PDF desde el botón principal o modal
+        // Exportación a PDF
         const handlePdfExport = () => {
             modalAddress.textContent = inputAddress.value.trim() || 'Sin especificar';
             generateTechnicalTexts();
