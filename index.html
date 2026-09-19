@@ -322,7 +322,7 @@ class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ri
 </div>
 </div>
 </div>
-<!-- Script de lógica -->
+<!-- Script de lógica corregido -->
 <script>
 const availableOptions = [
 "transformador", "limitador", "micros", "cuñas", "rozaderas",
@@ -401,6 +401,7 @@ modalDate.textContent = '--/--/----';
 }
 }
 function renderOptions() {
+if (!optionsContainer) return;
 optionsContainer.innerHTML = '';
 availableOptions.forEach(opt => {
 const isSelected = selectedIngredients.includes(opt);
@@ -480,7 +481,6 @@ let diagHTML = ⁠<p class="mb-3">En el día de la fecha, personal técnico espe
 let recHTML = ⁠<p class="mb-3">Con el firme propósito de garantizar el cumplimiento estricto de las normativas vigentes de seguridad para ascensores (Normas UNE-EN 81), mitigar riesgos de interrupciones imprevistas del servicio y asegurar la máxima durabilidad y confort para los usuarios de la comunidad, se establecen las siguientes directrices y actuaciones correctoras de obligado cumplimiento:</p> <ul class="list-disc pl-5 space-y-3">⁠;
 selectedIngredients.forEach(item => {
 const formatted = item.charAt(0).toUpperCase() + item.slice(1);
-// Explicaciones técnicas profundas y por qué se han dañado
 let descDiag = ⁠Se detecta fallo o desviación operativa en el componente <strong>${formatted}</strong>, afectando al rendimiento general del sistema y provocando paradas o lecturas anómalas en el bucle de seguridad. Este daño suele deberse al estrés mecánico acumulado, fatiga de materiales o fluctuaciones de carga operativa.⁠;
 let descRec = ⁠Proceder a la sustitución, calibración o ajuste estructural de <strong>${formatted}</strong>, verificando continuidad eléctrica, apriete de bornes y tolerancias mecánicas según especificaciones del fabricante. Se recomienda planificar revisiones trimestrales de este elemento.⁠;
 if (item === 'transformador') {
@@ -536,7 +536,6 @@ reportPhotosSection.classList.remove('hidden');
 reportPhotosSection.classList.add('hidden');
 }
 uploadedPhotos.forEach((photo, index) => {
-// Miniatura panel principal
 const thumb = document.createElement('div');
 thumb.className = 'relative w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group';
 thumb.innerHTML = ⁠<img src="${photo}" class="w-full h-full object-cover"> <button type="button" class="absolute top-1 right-1 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-85 hover:opacity-100 transition cursor-pointer shadow-sm"> <i class="fa-solid fa-xmark"></i> </button>⁠;
@@ -546,7 +545,6 @@ renderPhotosPreviews();
 updateSummary();
 });
 photosPreviewContainer.appendChild(thumb);
-// Grid dentro del informe modal
 const reportImg = document.createElement('div');
 reportImg.className = 'border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 p-2 shadow-2xs';
 reportImg.innerHTML = ⁠<img src="${photo}" class="w-full h-32 object-cover rounded-xl"> <p class="text-[10px] text-slate-500 text-center mt-1.5 font-mono font-bold">Anexo Fotográfico 0${index + 1}</p>⁠;
@@ -632,7 +630,7 @@ window.location.href = ⁠mailto:${target}?subject=${subject}&body=${body}⁠;
 }
 closeShareModal();
 });
-// Exportación a Word (.doc) robusta con contenido completo
+// Exportación a Word (.doc)
 btnDownloadWord.addEventListener('click', () => {
 const address = inputAddress.value.trim() || 'Sin_especificar';
 const dateStr = summaryDate.textContent;
@@ -701,7 +699,12 @@ jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
 };
 html2pdf().from(element).set(opt).save();
 });
-window.onload = initApp;
+// Inicialización segura al cargar la página
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', initApp);
+} else {
+initApp();
+}
 </script>
 </body>
 </html>
