@@ -49,20 +49,20 @@
         <section class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 flex flex-col gap-6">
             <div>
                 <h2 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-1">
-                    <i class="fa-solid fa-pen-to-square text-indigo-600"></i> Datos y Palabras Clave de la Intervención
+                    <i class="fa-solid fa-pen-to-square text-indigo-600"></i> Datos y Componentes de la Intervención
                 </h2>
-                <p class="text-xs text-slate-500">Selecciona componentes y causas para generar automáticamente el informe técnico detallado.</p>
+                <p class="text-xs text-slate-500">Selecciona componentes categorizados o causas para redactar automáticamente el informe técnico avanzado.</p>
             </div>
 
             <!-- Datos Generales -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-address">Dirección de la Comunidad</label>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-address">Dirección / Comunidad</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 pointer-events-none">
                             <i class="fa-solid fa-location-dot"></i>
                         </span>
-                        <input type="text" id="input-address" placeholder="Ej: Av. de la Constitución 12, 3ºA" 
+                        <input type="text" id="input-address" placeholder="Ej: Av. de la Constitución 12" 
                             class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
                     </div>
                 </div>
@@ -77,18 +77,30 @@
                             class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
                     </div>
                 </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-elevator-id">Nº de Fábrica / Ascensor</label>
+                    <input type="text" id="input-elevator-id" placeholder="Ej: 12345 - Ref. Interna" 
+                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-status">Estado del Equipo</label>
+                    <select id="input-status" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
+                        <option value="Servicio Normal (Restablecido)">Servicio Normal (Restablecido)</option>
+                        <option value="Fuera de Servicio / Precintado">Fuera de Servicio / Precintado</option>
+                        <option value="Pendiente de Repuesto / Piezas">Pendiente de Repuesto / Piezas</option>
+                    </select>
+                </div>
             </div>
 
             <hr class="border-slate-100">
 
-            <!-- Opciones / Palabras Clave -->
+            <!-- Opciones Categorizadas -->
             <div>
-                <div class="flex justify-between items-center mb-2">
-                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">Palabras Clave y Componentes</label>
-                    <span class="text-[11px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-medium">Haz clic para activar</span>
-                </div>
-                <div id="options-container" class="flex flex-wrap gap-2 max-h-52 overflow-y-auto p-3 bg-slate-50/70 border border-slate-200 rounded-xl shadow-inner">
-                    <!-- Generado por JS -->
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 block">Componentes y Causas (Categorizados)</label>
+                <div id="options-container" class="space-y-4 max-h-64 overflow-y-auto p-3 bg-slate-50/70 border border-slate-200 rounded-xl shadow-inner">
+                    <!-- Generado dinámicamente por categorías -->
                 </div>
             </div>
 
@@ -96,7 +108,7 @@
             <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="custom-input">Añadir elemento o anomalía personalizada</label>
                 <div class="flex gap-2">
-                    <input type="text" id="custom-input" placeholder="Ej: Desgaste en contactos de relé..." 
+                    <input type="text" id="custom-input" placeholder="Ej: Holgura en rodamiento de polea..." 
                         class="flex-1 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
                     <button type="button" id="btn-add-custom" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition shadow-sm flex items-center gap-1.5 shrink-0">
                         <i class="fa-solid fa-plus"></i> Añadir
@@ -109,15 +121,11 @@
             <!-- Subida de Fotos -->
             <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Adjuntar Fotografías de la Intervención</label>
-                <div class="flex items-center gap-2">
-                    <label class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer text-xs font-medium text-slate-700 transition">
-                        <i class="fa-solid fa-camera text-indigo-600"></i> Seleccionar Imágenes
-                        <input type="file" id="input-photos" accept="image/*" multiple class="hidden">
-                    </label>
-                </div>
-                <div id="photos-preview-container" class="flex flex-wrap gap-2 mt-3 empty:hidden">
-                    <!-- Miniaturas -->
-                </div>
+                <label class="flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer text-xs font-medium text-slate-700 transition">
+                    <i class="fa-solid fa-camera text-indigo-600"></i> Seleccionar Imágenes
+                    <input type="file" id="input-photos" accept="image/*" multiple class="hidden">
+                </label>
+                <div id="photos-preview-container" class="flex flex-wrap gap-2 mt-3 empty:hidden"></div>
             </div>
 
             <button type="button" id="btn-reset" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 py-2.5 rounded-xl text-xs font-semibold transition uppercase tracking-wider mt-2">
@@ -153,40 +161,48 @@
                             <span id="summary-count" class="font-medium text-indigo-600 font-bold">0 elementos</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="font-bold text-slate-400 uppercase text-[10px]">Fotografías adjuntas:</span>
+                            <span class="font-bold text-slate-400 uppercase text-[10px]">Fotografías:</span>
                             <span id="summary-photos-count" class="font-medium text-indigo-600 font-bold">0 fotos</span>
                         </div>
                     </div>
 
-                    <!-- Selector de Formato de Redacción -->
-                    <div class="bg-indigo-50/60 p-4 rounded-xl border border-indigo-100 space-y-2">
-                        <label class="block text-xs font-bold text-indigo-950 uppercase tracking-wider">Modo de Redacción del Informe</label>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button type="button" id="btn-mode-detailed" class="py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-file-lines"></i> Técnico Extenso
-                            </button>
-                            <button type="button" id="btn-mode-brief" class="py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-compress"></i> Abreviado
-                            </button>
+                    <!-- Configuración de Envío Rápido -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Destinos para Envío Rápido</label>
+                        <div>
+                            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1">Teléfono WhatsApp (con prefijo)</label>
+                            <input type="text" id="input-whatsapp" placeholder="Ej: 34600000000" 
+                                class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-indigo-500">
                         </div>
-                        <p class="text-[11px] text-indigo-900/75 italic mt-1" id="mode-description">
-                            Genera un informe altamente profesional, con análisis detallado de causas, normativas y acciones correctoras.
-                        </p>
+                        <div>
+                            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1">Correo Electrónico Destino</label>
+                            <input type="email" id="input-email" placeholder="Ej: administrador@finca.com" 
+                                class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-indigo-500">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Botón Principal de Vista Previa y Descargas -->
+                <!-- Botones Principales -->
                 <div class="mt-6 pt-4 border-t border-slate-100 space-y-3">
                     <button id="btn-open-preview" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer">
                         <i class="fa-solid fa-eye text-base"></i> Ver Vista Previa del Informe
                     </button>
                     
-                    <div class="grid grid-cols-2 gap-3">
-                        <button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
-                            <i class="fa-solid fa-file-word text-sm"></i> Descargar Word
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-2 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-solid fa-file-word text-sm"></i> Word
                         </button>
-                        <button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
-                            <i class="fa-solid fa-file-pdf text-sm"></i> Descargar PDF
+                        <button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-2 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-solid fa-file-pdf text-sm"></i> PDF
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button id="btn-send-whatsapp" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-2 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                        </button>
+                        <button id="btn-send-email" class="bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-2 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 text-xs cursor-pointer">
+                            <i class="fa-solid fa-envelope text-sm"></i> Email
                         </button>
                     </div>
                 </div>
@@ -212,61 +228,71 @@
 
             <!-- Cuerpo Imprimible / Exportable -->
             <div id="printable-report" class="p-8 overflow-y-auto space-y-6 text-slate-800 bg-white flex-1">
-                <!-- Cabecera Documento -->
-                <div class="border-b border-slate-200 pb-4 flex justify-between items-start">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-indigo-950 uppercase tracking-wide">Informe Técnico de Mantenimiento y Averías</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Servicio Oficial de Asistencia Técnica en Aparatos Elevadores</p>
+                
+                <!-- Cabecera Documento con Logo Arriba a la Izquierda -->
+                <div class="border-b border-slate-200 pb-4 flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <img src="logo.jpeg" alt="Logo Empresa" class="w-16 h-16 object-contain rounded-lg border border-slate-100 shadow-2xs" onerror="this.style.display='none'">
+                        <div>
+                            <h2 class="text-lg font-extrabold text-indigo-950 uppercase tracking-wide">Informe Técnico de Mantenimiento y Averías</h2>
+                            <p class="text-xs text-slate-500">Servicio Oficial de Asistencia Técnica en Aparatos Elevadores</p>
+                        </div>
                     </div>
                     <div class="text-right">
                         <span class="text-[10px] bg-slate-100 text-slate-600 px-3 py-1 rounded-md font-mono uppercase font-semibold border border-slate-200">Ref: IT-ASC-2026</span>
                     </div>
                 </div>
 
-                <!-- Datos Comunidad y Fecha -->
-                <div class="grid grid-cols-2 gap-4 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <!-- Datos Comunidad y Estado -->
+                <div class="grid grid-cols-3 gap-3 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
                     <div>
-                        <span class="block font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-0.5">Comunidad de Propietarios:</span>
-                        <span id="modal-address" class="font-semibold text-slate-800 text-sm italic">Sin especificar</span>
+                        <span class="block font-bold text-slate-400 uppercase text-[9px] tracking-wider mb-0.5">Comunidad:</span>
+                        <span id="modal-address" class="font-semibold text-slate-800 text-xs italic">Sin especificar</span>
                     </div>
                     <div>
-                        <span class="block font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-0.5">Fecha de Intervención:</span>
-                        <span id="modal-date" class="font-semibold text-slate-800 text-sm">--/--/----</span>
+                        <span class="block font-bold text-slate-400 uppercase text-[9px] tracking-wider mb-0.5">Nº Fábrica:</span>
+                        <span id="modal-elevator-id" class="font-semibold text-slate-800 text-xs">--</span>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-400 uppercase text-[9px] tracking-wider mb-0.5">Fecha y Estado:</span>
+                        <span id="modal-date-status" class="font-semibold text-indigo-700 text-xs">--/--/----</span>
                     </div>
                 </div>
 
-                <!-- Redacción Generada -->
+                <!-- Redacción Generada Extensa -->
                 <div class="space-y-3">
-                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">1. Diagnóstico Técnico y Estado de la Instalación</h4>
-                    <div id="report-diagnostic" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-2">
-                        <!-- Dinámico -->
-                    </div>
+                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">1. Diagnóstico Técnico Detallado y Análisis de Incidencias</h4>
+                    <div id="report-diagnostic" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
                 </div>
 
                 <div class="space-y-3">
-                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">2. Acciones Correctoras y Recomendaciones Técnicas</h4>
-                    <div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-2">
-                        <!-- Dinámico -->
-                    </div>
+                    <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">2. Acciones Correctoras, Criterios Normativos y Recomendaciones</h4>
+                    <div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
                 </div>
 
                 <!-- Sección de Fotos -->
                 <div id="report-photos-section" class="space-y-3 hidden">
                     <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-1">3. Registro Fotográfico de la Intervención</h4>
-                    <div id="report-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                        <!-- Dinámico -->
+                    <div id="report-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2"></div>
+                </div>
+
+                <!-- Firma Digital Canvas -->
+                <div class="pt-4 border-t border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-slate-700 uppercase">Firma del Responsable / Cliente:</span>
+                        <button type="button" id="btn-clear-signature" class="text-[10px] text-rose-600 hover:underline">Limpiar Firma</button>
+                    </div>
+                    <div class="border border-slate-300 rounded-xl bg-slate-50 w-full h-32 relative overflow-hidden">
+                        <canvas id="signature-canvas" class="w-full h-full cursor-crosshair"></canvas>
                     </div>
                 </div>
 
-                <!-- Pie de Firma -->
-                <div class="pt-8 border-t border-slate-200 text-xs text-slate-500 flex justify-between items-end mt-12">
+                <!-- Pie de Documento con Logo Centrado -->
+                <div class="pt-8 border-t border-slate-200 text-xs text-slate-500 flex flex-col items-center justify-center gap-2 mt-8 text-center">
+                    <img src="logo.jpeg" alt="Logo Empresa Centro" class="w-10 h-10 object-contain rounded-full border border-slate-100 shadow-2xs opacity-80" onerror="this.style.display='none'">
                     <div>
-                        <p class="font-semibold text-slate-700">Técnico Especialista Autorizado</p>
-                        <p class="text-[10px] text-slate-400">Cumplimiento de normativa de seguridad para ascensores</p>
-                    </div>
-                    <div class="text-right">
-                        <div class="border-b border-slate-400 w-40 mb-1.5 h-8"></div>
-                        <span class="text-[10px] text-slate-600 uppercase font-semibold">Firma y Sello</span>
+                        <p class="font-semibold text-slate-700">Técnico Especialista Autorizado — Servicio Oficial de Mantenimiento</p>
+                        <p class="text-[10px] text-slate-400">Documento generado conforme a la normativa de seguridad aplicable en ascensores</p>
                     </div>
                 </div>
             </div>
@@ -283,34 +309,70 @@
         </div>
     </div>
 
-    <!-- Script de lógica -->
+    <!-- Script de Lógica Avanzada -->
     <script>
-        const availableOptions = [
-            "transformador", "limitador", "micros", "cuñas", "rozaderas",
-            "ha filtrado agua", "por tormenta", "por golpe", "por mal uso", 
-            "por sobrecargar el ascensor", "acto vandálico", "lluvia", "inundación", 
-            "placa en corto", "variador de puertas", "variador maniobra", "puertas de cabina", 
-            "puertas exteriores", "dor123", "dor124", "módulo ipm", "IGBT", 
-            "m1", "e1", "deslizaderas cabina", "poleas cabina", "fotocelula", 
-            "clt", "pulsador", "mirilla", "botonera"
-        ];
+        const categorizedOptions = {
+            "Maniobra y Electrónica": ["transformador", "variador maniobra", "variador de puertas", "placa en corto", "módulo ipm", "IGBT", "m1", "e1", "clt"],
+            "Seguridades y Mecánica": ["limitador", "micros", "cuñas", "rozaderas", "deslizaderas cabina", "poleas cabina"],
+            "Puertas y Accesos": ["puertas de cabina", "puertas exteriores", "fotocelula", "pulsador", "mirilla", "botonera", "dor123", "dor124"],
+            "Causas Externas / Medioambientales": ["ha filtrado agua", "por tormenta", "por golpe", "por mal uso", "por sobrecargar el ascensor", "acto vandálico", "lluvia", "inundación"]
+        };
+
+        const detailedKnowledgeBase = {
+            "transformador": {
+                func: "Suministrar y aislar los niveles de baja tensión requeridos para la maniobra y circuitos auxiliares de seguridad.",
+                damage: "Inestabilidad en las tensiones secundarias, provocando reinicios inesperados en la placa base y fallos intermitentes en relés."
+            },
+            "limitador": {
+                func: "Controlar mecánicamente la velocidad máxima admisible de la cabina y activar el sistema de paracaídas en caso de exceso.",
+                damage: "Disparo intempestivo del sistema de emergencia o pérdida de sincronismo en los contactos eléctricos de parada."
+            },
+            "micros": {
+                func: "Detectar la posición física exacta de elementos críticos (puertas, levas, seguridades) para cerrar el circuito de seguridad.",
+                damage: "Aperturas indebidas de la cadena de seguridades, bloqueando el ascensor en pleno trayecto."
+            },
+            "cuñas": {
+                func: "Frenar y retener mecánicamente la cabina sobre las guías ante una situación de velocidad descontrolada.",
+                damage: "Desgaste severo en las superficies de fricción o marcas profundas en las guías del hueco."
+            },
+            "rozaderas": {
+                func: "Guiar el desplazamiento suave de la cabina y el contrapeso a lo largo de las guías verticales.",
+                damage: "Holguras mecánicas excesivas que generan fuertes vibraciones, ruidos molestos y desgaste irregular."
+            },
+            "variador maniobra": {
+                func: "Gestionar el perfil de velocidad, aceleración y deceleración del motor principal de tracción.",
+                damage: "Paradas bruscas, tirones en el arranque y errores de nivelación en planta."
+            },
+            "variador de puertas": {
+                func: "Controlar la apertura y cierre suave y seguro de las puertas automáticas.",
+                damage: "Rebotes constantes, bloqueo en el operador o fallos en la inversión por seguridad."
+            },
+            "placa en corto": {
+                func: "Procesar las señales lógicas y de llamada de todo el sistema de control del ascensor.",
+                damage: "Interrupción total del servicio y daño irreversible en pistas de circuitos impresos por sobreintensidad."
+            },
+            "fotocelula": {
+                func: "Detectar la presencia de pasajeros en el vano de la puerta para evitar atrapamientos.",
+                damage: "Incapacidad para reabrir puertas ante obstáculos, con riesgo de impacto a usuarios."
+            }
+        };
 
         let selectedIngredients = [];
         let uploadedPhotos = [];
-        let reportMode = 'detailed'; // 'detailed' o 'brief'
 
+        // Referencias DOM
         const optionsContainer = document.getElementById('options-container');
         const inputAddress = document.getElementById('input-address');
         const inputDate = document.getElementById('input-date');
+        const inputElevatorId = document.getElementById('input-elevator-id');
+        const inputStatus = document.getElementById('input-status');
+        const inputWhatsapp = document.getElementById('input-whatsapp');
+        const inputEmail = document.getElementById('input-email');
         const headerDate = document.getElementById('header-date');
         const customInput = document.getElementById('custom-input');
         const btnAddCustom = document.getElementById('btn-add-custom');
         const btnReset = document.getElementById('btn-reset');
         
-        const btnModeDetailed = document.getElementById('btn-mode-detailed');
-        const btnModeBrief = document.getElementById('btn-mode-brief');
-        const modeDescription = document.getElementById('mode-description');
-
         const btnOpenPreview = document.getElementById('btn-open-preview');
         const previewModal = document.getElementById('preview-modal');
         const btnCloseModal = document.getElementById('btn-close-modal');
@@ -324,7 +386,8 @@
         const summaryPhotosCount = document.getElementById('summary-photos-count');
         
         const modalAddress = document.getElementById('modal-address');
-        const modalDate = document.getElementById('modal-date');
+        const modalElevatorId = document.getElementById('modal-elevator-id');
+        const modalDateStatus = document.getElementById('modal-date-status');
         const reportDiagnostic = document.getElementById('report-diagnostic');
         const reportRecommendations = document.getElementById('report-recommendations');
         const reportPhotosSection = document.getElementById('report-photos-section');
@@ -333,14 +396,68 @@
         const btnDownloadWord = document.getElementById('btn-download-word');
         const btnDownloadPdf = document.getElementById('btn-download-pdf');
         const btnModalDownloadPdf = document.getElementById('btn-modal-download-pdf');
+        const btnSendWhatsapp = document.getElementById('btn-send-whatsapp');
+        const btnSendEmail = document.getElementById('btn-send-email');
+
+        // Canvas Firma
+        const canvas = document.getElementById('signature-canvas');
+        const ctx = canvas.getContext('2d');
+        let painting = false;
 
         function initApp() {
             const today = new Date().toISOString().split('T')[0];
             inputDate.value = today;
+            
+            // Cargar localStorage si existe
+            if (localStorage.getItem('saved_address')) inputAddress.value = localStorage.getItem('saved_address');
+            if (localStorage.getItem('saved_elevator_id')) inputElevatorId.value = localStorage.getItem('saved_elevator_id');
+            if (localStorage.getItem('saved_whatsapp')) inputWhatsapp.value = localStorage.getItem('saved_whatsapp');
+            if (localStorage.getItem('saved_email')) inputEmail.value = localStorage.getItem('saved_email');
+
             updateDateDisplay();
             renderOptions();
             updateSummary();
+            resizeCanvas();
         }
+
+        function saveToStorage() {
+            localStorage.setItem('saved_address', inputAddress.value);
+            localStorage.setItem('saved_elevator_id', inputElevatorId.value);
+            localStorage.setItem('saved_whatsapp', inputWhatsapp.value);
+            localStorage.setItem('saved_email', inputEmail.value);
+        }
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+
+        // Firma táctil y ratón
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', finishedPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('touchstart', (e) => { startPosition(e.touches[0]); e.preventDefault(); });
+        canvas.addEventListener('touchend', finishedPosition);
+        canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
+
+        function startPosition(e) { painting = true; draw(e); }
+        function finishedPosition() { painting = false; ctx.beginPath(); }
+        function draw(e) {
+            if (!painting) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#1e1b4b';
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        document.getElementById('btn-clear-signature').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
 
         function updateDateDisplay() {
             const val = inputDate.value;
@@ -349,35 +466,39 @@
                 const formatted = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 headerDate.textContent = formatted;
                 summaryDate.textContent = formatted;
-                modalDate.textContent = formatted;
-            } else {
-                headerDate.textContent = '--/--/----';
-                summaryDate.textContent = '--/--/----';
-                modalDate.textContent = '--/--/----';
             }
         }
 
         function renderOptions() {
             optionsContainer.innerHTML = '';
-            availableOptions.forEach(opt => {
-                const isSelected = selectedIngredients.includes(opt);
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = `px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 border cursor-pointer ${
-                    isSelected 
-                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm ring-2 ring-indigo-200' 
-                        : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
-                }`;
-                const displayOpt = opt.charAt(0).toUpperCase() + opt.slice(1);
-                btn.innerHTML = `<span>${displayOpt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : '<i class="fa-solid fa-plus text-[10px] text-slate-400"></i>'}`;
+            for (const [category, items] of Object.entries(categorizedOptions)) {
+                const catDiv = document.createElement('div');
+                catDiv.innerHTML = `<p class="text-[10px] font-bold text-indigo-900 uppercase tracking-wider mb-1.5">${category}</p>`;
                 
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    toggleOption(opt);
-                });
+                const flexDiv = document.createElement('div');
+                flexDiv.className = 'flex flex-wrap gap-1.5 mb-2';
 
-                optionsContainer.appendChild(btn);
-            });
+                items.forEach(opt => {
+                    const isSelected = selectedIngredients.includes(opt);
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = `px-2.5 py-1 rounded-lg text-xs font-medium transition flex items-center gap-1 border cursor-pointer ${
+                        isSelected 
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm' 
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                    }`;
+                    const displayOpt = opt.charAt(0).toUpperCase() + opt.slice(1);
+                    btn.innerHTML = `<span>${displayOpt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[9px]"></i>' : '<i class="fa-solid fa-plus text-[9px] text-slate-400"></i>'}`;
+                    
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleOption(opt);
+                    });
+                    flexDiv.appendChild(btn);
+                });
+                catDiv.appendChild(flexDiv);
+                optionsContainer.appendChild(catDiv);
+            }
         }
 
         function toggleOption(item) {
@@ -397,92 +518,60 @@
             summaryAddress.classList.toggle('italic', !addr);
             summaryCount.textContent = `${selectedIngredients.length} elementos`;
             summaryPhotosCount.textContent = `${uploadedPhotos.length} fotos`;
+            saveToStorage();
         }
 
-        // Cambio de Modo de Redacción
-        btnModeDetailed.addEventListener('click', () => {
-            reportMode = 'detailed';
-            btnModeDetailed.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5';
-            btnModeBrief.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5';
-            modeDescription.textContent = 'Genera un informe altamente profesional, con análisis detallado de causas, normativas y acciones correctoras.';
-        });
-
-        btnModeBrief.addEventListener('click', () => {
-            reportMode = 'brief';
-            btnModeBrief.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-1.5';
-            btnModeDetailed.className = 'py-2 px-3 rounded-xl text-xs font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 flex items-center justify-center gap-1.5';
-            modeDescription.textContent = 'Genera un parte de asistencia rápido, conciso y directo al grano con los puntos clave.';
-        });
-
-        // Generador de Redacción Técnica Profesional Avanzada
+        // Generador Técnico Extenso y Profesional
         function generateTechnicalTexts() {
             const addr = inputAddress.value.trim() || 'la instalación del cliente';
-            
+            const elevatorId = inputElevatorId.value.trim() || 'No especificado';
+            const status = inputStatus.value;
+
+            modalAddress.textContent = addr;
+            modalElevatorId.textContent = elevatorId;
+            modalDateStatus.textContent = `${summaryDate.textContent} — ${status}`;
+
             if (selectedIngredients.length === 0) {
                 reportDiagnostic.innerHTML = `<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el diagnóstico.</p>`;
                 reportRecommendations.innerHTML = `<p class="italic text-slate-400">Sin recomendaciones aplicables por falta de incidencias registradas.</p>`;
                 return;
             }
 
-            if (reportMode === 'brief') {
-                // Modo Abreviado
-                let diagHTML = `<p class="mb-2">Intervención realizada en <strong>${addr}</strong> por incidencias detectadas en los siguientes componentes:</p><ul class="list-disc pl-5 space-y-1">`;
-                let recHTML = `<p class="mb-2">Acciones correctoras aplicadas:</p><ul class="list-disc pl-5 space-y-1">`;
-
-                selectedIngredients.forEach(item => {
-                    const formatted = item.charAt(0).toUpperCase() + item.slice(1);
-                    diagHTML += `<li>Revisión de ${formatted}: Anotar anomalía operativa.</li>`;
-                    recHTML += `<li>Sustitución, ajuste o verificación de ${formatted} completada.</li>`;
-                });
-                diagHTML += `</ul>`;
-                recHTML += `</ul>`;
-                reportDiagnostic.innerHTML = diagHTML;
-                reportRecommendations.innerHTML = recHTML;
-                return;
-            }
-
-            // Modo Técnico Extenso y Profesional por Defecto
             let diagHTML = `
-                <p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita de inspección, diagnóstico y verificación funcional en el aparato elevador ubicado en <strong>${addr}</strong>. Tras someter el sistema a las pruebas pertinentes de control y seguridad, se emite el siguiente dictamen técnico detallado:</p>
-                <p class="mb-2 font-semibold text-indigo-950">Anomalías y parámetros analizados en la intervención:</p>
-                <ul class="list-disc pl-5 space-y-2">
+                <p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita rigurosa de inspección, verificación funcional y análisis de averías en el aparato elevador con número de fábrica <strong>${elevatorId}</strong>, ubicado en <strong>${addr}</strong>. Tras someter los subsistemas mecánicos y eléctricos a comprobaciones instrumentales, se emite el presente dictamen técnico detallado:</p>
+                <div class="space-y-3">
             `;
 
             let recHTML = `
-                <p class="mb-3">Con el firme propósito de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (UNE-EN 81), mitigar riesgos de averías imprevistas y asegurar el confort y la fiabilidad para los usuarios de la comunidad, se establecen las siguientes directrices y actuaciones correctoras:</p>
-                <ul class="list-disc pl-5 space-y-2">
+                <p class="mb-3">Con el objetivo primordial de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (Directiva de Ascensores y normas armonizadas UNE-EN 81), mitigar riesgos potenciales de accidentes y asegurar la máxima fiabilidad operativa para los usuarios de la comunidad, se establecen las siguientes actuaciones correctoras y directrices técnicas:</p>
+                <div class="space-y-3">
             `;
 
             selectedIngredients.forEach(item => {
                 const formatted = item.charAt(0).toUpperCase() + item.slice(1);
-                
-                // Explicaciones técnicas adaptadas según el componente
-                let descDiag = `Se detecta fallo o desviación operativa en el componente <strong>${formatted}</strong>, afectando al rendimiento general del sistema y provocando paradas o lecturas anómalas en el bucle de seguridad.`;
-                let descRec = `Proceder a la sustitución, calibración o ajuste estructural de <strong>${formatted}</strong>, verificando continuidad eléctrica, apriete de bornes y tolerancias mecánicas según especificaciones del fabricante.`;
+                const info = detailedKnowledgeBase[item] || {
+                    func: "Garantizar la correcta transmisión de señales o soporte estructural dentro de la cadena de servicio del ascensor.",
+                    damage: "Comportamiento anómalo en el bucle de control, pudiendo desencadenar paradas de seguridad o desgaste prematuro."
+                };
 
-                if (item === 'transformador') {
-                    descDiag = `Se registra caída de tensión o inestabilidad en las líneas de alimentación de baja tensión secundarias procedentes del <strong>transformador</strong>, comprometiendo la estabilidad de la maniobra.`;
-                    descRec = `Comprobar tensiones primarias y secundarias del transformador, verificar protecciones térmicas y asegurar un correcto aislamiento galvánico.`;
-                } else if (item === 'limitador') {
-                    descDiag = `Anomalía en el sistema mecánico de sobrevelocidad y disparo del <strong>limitador</strong> de velocidad de cabina, requiriendo comprobación del sincronismo.`;
-                    descRec = `Verificar la calibración del paracaídas, el tensado del cable del limitador y el correcto rearte de los contactos eléctricos de seguridad asociados.`;
-                } else if (item === 'micros') {
-                    descDiag = `Desajuste o fallo de contactos en los interruptores <strong>micros</strong> de seguridad (puertas, levas o finales de carrera), provocando aperturas indebidas del circuito de seguridades.`;
-                    descRec = `Realinear, limpiar y comprobar la histéresis y el correcto accionamiento físico de los micros de seguridad.`;
-                } else if (item === 'cuñas') {
-                    descDiag = `Desgaste o aproximación irregular en el conjunto de <strong>cuñas</strong> del sistema de paracaídas, comprometiendo la respuesta ante una emergencia mecánica.`;
-                    descRec = `Inspeccionar el estado de fricción de las cuñas sobre las guías, limpiar restos de suciedad y ajustar la holgura reglamentaria.`;
-                } else if (item === 'rozaderas') {
-                    descDiag = `Holgura excesiva o desgaste avanzado en las <strong>rozaderas</strong> de cabina o contrapeso, generando vibraciones, ruido y roce directo contra las guías.`;
-                    descRec = `Sustituir los patines o pastillas de las rozaderas y realizar una nivelación y alineación geométrica de la cabina respecto a las guías.`;
-                }
+                diagHTML += `
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <p class="font-bold text-indigo-950 mb-1">■ Incidencia en Componente: ${formatted}</p>
+                        <p class="text-slate-700 mb-1"><strong>Función principal:</strong> ${info.func}</p>
+                        <p class="text-slate-700"><strong>Análisis del daño y afectación:</strong> Se ha diagnosticado ${info.damage}. Esta anomalía compromete directamente la estabilidad operativa del equipo y exige intervención correctiva inmediata para evitar daños mayores en componentes adyacentes.</p>
+                    </div>
+                `;
 
-                diagHTML += `<li><strong class="text-slate-900">${formatted}:</strong> ${descDiag}</li>`;
-                recHTML += `<li><strong class="text-slate-900">${formatted}:</strong> ${descRec}</li>`;
+                recHTML += `
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <p class="font-bold text-indigo-950 mb-1">■ Actuación sobre: ${formatted}</p>
+                        <p class="text-slate-700">Se procede a la sustitución, calibración y ajuste mecánico/eléctrico de precisión de este elemento. Se verifica continuidad, aislamiento, apriete de bornes y tolerancias geométricas conforme a las especificaciones originales del fabricante, dejando el sistema en estado de <strong>${status}</strong>.</p>
+                    </div>
+                `;
             });
 
-            diagHTML += `</ul>`;
-            recHTML += `</ul>`;
+            diagHTML += `</div>`;
+            recHTML += `</div>`;
             
             reportDiagnostic.innerHTML = diagHTML;
             reportRecommendations.innerHTML = recHTML;
@@ -514,7 +603,6 @@
             }
 
             uploadedPhotos.forEach((photo, index) => {
-                // Miniatura panel principal
                 const thumb = document.createElement('div');
                 thumb.className = 'relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shadow-2xs group';
                 thumb.innerHTML = `
@@ -530,7 +618,6 @@
                 });
                 photosPreviewContainer.appendChild(thumb);
 
-                // Grid dentro del informe modal
                 const reportImg = document.createElement('div');
                 reportImg.className = 'border border-slate-200 rounded-xl overflow-hidden bg-slate-50 p-1.5';
                 reportImg.innerHTML = `
@@ -543,6 +630,9 @@
 
         // Eventos de entrada
         inputAddress.addEventListener('input', updateSummary);
+        inputElevatorId.addEventListener('input', updateSummary);
+        inputWhatsapp.addEventListener('input', updateSummary);
+        inputEmail.addEventListener('input', updateSummary);
         inputDate.addEventListener('change', updateDateDisplay);
 
         btnAddCustom.addEventListener('click', (e) => {
@@ -567,13 +657,14 @@
             selectedIngredients = [];
             uploadedPhotos = [];
             inputAddress.value = '';
+            inputElevatorId.value = '';
+            localStorage.clear();
             initApp();
             renderPhotosPreviews();
         });
 
-        // Abrir y cerrar modal de vista previa
+        // Modal
         btnOpenPreview.addEventListener('click', () => {
-            modalAddress.textContent = inputAddress.value.trim() || 'Sin especificar';
             generateTechnicalTexts();
             previewModal.classList.remove('hidden');
         });
@@ -582,13 +673,12 @@
         btnCloseModal.addEventListener('click', closeModal);
         btnCloseModal2.addEventListener('click', closeModal);
 
-        // Exportación a Word (.doc) robusta con contenido completo
+        // Exportar Word (.doc) con Logos e información completa
         btnDownloadWord.addEventListener('click', () => {
             const address = inputAddress.value.trim() || 'Sin_especificar';
             const dateStr = summaryDate.textContent;
-            
-            // Generar textos actuales para el Word
             generateTechnicalTexts();
+            
             const diagText = reportDiagnostic.innerHTML;
             const recText = reportRecommendations.innerHTML;
 
@@ -596,25 +686,31 @@
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
                 <head><meta charset='utf-8'><title>Informe Técnico de Ascensores</title></head>
                 <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 25px;">
-                    <h2 style="color: #1e1b4b; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px;">INFORME TÉCNICO DE ASCENSORES</h2>
-                    <p><strong>Comunidad de Propietarios:</strong> ${address}</p>
-                    <p><strong>Fecha del Servicio:</strong> ${dateStr}</p>
-                    <p><strong>Elementos Registrados:</strong> ${selectedIngredients.length > 0 ? selectedIngredients.join(', ') : 'Ninguno'}</p>
+                    <table width="100%" style="border-bottom: 2px solid #6366f1; padding-bottom: 10px; margin-bottom: 20px;">
+                        <tr>
+                            <td><img src="logo.jpeg" width="60" height="60" style="vertical-align: middle;"/></td>
+                            <td style="text-align: right;"><h2 style="color: #1e1b4b; margin: 0;">INFORME TÉCNICO DE ASCENSORES</h2></td>
+                        </tr>
+                    </table>
+                    <p><strong>Comunidad:</strong> ${address}</p>
+                    <p><strong>Nº Fábrica:</strong> ${inputElevatorId.value || 'N/A'}</p>
+                    <p><strong>Fecha del Servicio:</strong> ${dateStr} — Estado: ${inputStatus.value}</p>
                     
-                    <h3 style="color: #312e81; margin-top: 20px;">1. Diagnóstico Técnico</h3>
+                    <h3 style="color: #312e81; margin-top: 20px;">1. Diagnóstico Técnico Detallado</h3>
                     <div>${diagText}</div>
 
-                    <h3 style="color: #312e81; margin-top: 20px;">2. Acciones y Recomendaciones</h3>
+                    <h3 style="color: #312e81; margin-top: 20px;">2. Acciones Correctoras y Recomendaciones</h3>
                     <div>${recText}</div>
-            `;
 
-            if (uploadedPhotos.length > 0) {
-                htmlContent += `<h3 style="color: #312e81; margin-top: 20px;">3. Registro Fotográfico</h3><p>Se han adjuntado ${uploadedPhotos.length} fotografías en esta intervención técnica.</p>`;
-            }
-
-            htmlContent += `
-                    <br><br><br>
-                    <p style="border-top: 1px solid #cbd5e1; width: 250px; padding-top: 5px;">Firma y Sello del Técnico</p>
+                    <br><br>
+                    <table width="100%" style="border-top: 1px solid #cbd5e1; padding-top: 20px; text-align: center;">
+                        <tr>
+                            <td>
+                                <img src="logo.jpeg" width="40" height="40" style="margin-bottom: 5px;"/>
+                                <p style="font-size: 11px; color: #666; margin: 0;">Técnico Especialista Autorizado</p>
+                            </td>
+                        </tr>
+                    </table>
                 </body>
                 </html>
             `;
@@ -630,9 +726,8 @@
             URL.revokeObjectURL(url);
         });
 
-        // Exportación a PDF
+        // Exportar PDF
         const handlePdfExport = () => {
-            modalAddress.textContent = inputAddress.value.trim() || 'Sin especificar';
             generateTechnicalTexts();
             previewModal.classList.remove('hidden');
             
@@ -651,17 +746,31 @@
         };
 
         btnDownloadPdf.addEventListener('click', handlePdfExport);
-        btnModalDownloadPdf.addEventListener('click', () => {
-            const element = document.getElementById('printable-report');
-            const address = inputAddress.value.trim() || 'informe_ascensor';
-            const opt = {
-                margin:       10,
-                filename:     `Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().from(element).set(opt).save();
+        btnModalDownloadPdf.addEventListener('click', handlePdfExport);
+
+        // Envío por WhatsApp
+        btnSendWhatsapp.addEventListener('click', () => {
+            const phone = inputWhatsapp.value.trim();
+            if (!phone) {
+                alert('Por favor, introduce un número de teléfono de WhatsApp válido en el panel izquierdo.');
+                return;
+            }
+            const addr = inputAddress.value.trim() || 'la comunidad';
+            const text = encodeURIComponent(`Hola, le adjunto el resumen del Informe Técnico de Ascensores para la comunidad en ${addr}. Estado del equipo: ${inputStatus.value}. Elementos revisados: ${selectedIngredients.join(', ')}.`);
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        });
+
+        // Envío por Correo Electrónico
+        btnSendEmail.addEventListener('click', () => {
+            const email = inputEmail.value.trim();
+            if (!email) {
+                alert('Por favor, introduce una dirección de correo electrónico en el panel izquierdo.');
+                return;
+            }
+            const addr = inputAddress.value.trim() || 'la comunidad';
+            const subject = encodeURIComponent(`Informe Técnico de Ascensor - ${addr}`);
+            const body = encodeURIComponent(`Estimado administrador / cliente,\n\nAdjunto los detalles de la intervención técnica realizada en ${addr}.\nFecha: ${summaryDate.textContent}\nEstado: ${inputStatus.value}\nElementos revisados: ${selectedIngredients.join(', ')}\n\nAtentamente,\nServicio Técnico`);
+            window.open(`mailto:${email}?subject=${subject}&body=${body}`);
         });
 
         window.onload = initApp;
