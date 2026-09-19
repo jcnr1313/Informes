@@ -1,291 +1,425 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generador de Informes Técnicos de Ascensores</title>
-<!-- Tailwind CSS para un diseño moderno y responsive -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- FontAwesome para iconos -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- html2pdf para la exportación a PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Informes Técnicos de Ascensores</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js para exportación a PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* Estilos específicos para impresión limpia de informes */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-report, #printable-report * {
+                visibility: visible;
+            }
+            #printable-report {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-12">
-<!-- Cabecera -->
-<header class="bg-indigo-700 text-white shadow-md py-4 px-6 mb-8">
-<div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-<div class="flex items-center gap-3">
-<i class="fa-solid fa-elevator text-2xl bg-white text-indigo-700 p-2 rounded-lg shadow"></i>
-<h1 class="text-xl font-bold tracking-wide">Generador de Informes Técnicos</h1>
-</div>
-<div class="text-sm bg-indigo-800 px-3 py-1.5 rounded-lg border border-indigo-600">
-<i class="fa-regular fa-calendar-days mr-2"></i><span id="header-date">--/--/----</span>
-</div>
-</div>
-</header>
-<main class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8">
-<!-- Panel de Control / Formulario (Izquierda) -->
-<section class="lg:col-span-6 bg-white rounded-xl shadow-lg p-6 border border-slate-200">
-<h2 class="text-lg font-semibold text-slate-700 mb-4 border-b pb-2 flex items-center gap-2">
-<i class="fa-solid fa-gears text-indigo-600"></i> Datos y Componentes del Informe
-</h2>
-<!-- Datos Generales -->
-<div class="space-y-4 mb-6">
-<div>
-<label class="block text-sm font-medium text-slate-600 mb-1" for="input-address">Dirección de la Comunidad</label>
-<div class="relative">
-<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
-<i class="fa-solid fa-location-dot"></i>
-</span>
-<input type="text" id="input-address" placeholder="Ej: Calle Mayor 14, 2ºB" 
-class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
-</div>
-</div>
-<div>
-<label class="block text-sm font-medium text-slate-600 mb-1" for="input-date">Fecha del Servicio</label>
-<input type="date" id="input-date" 
-class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
-</div>
-</div>
-<!-- Botones de Opciones (Ingredientes) -->
-<div class="mb-6">
-<label class="block text-sm font-medium text-slate-600 mb-2">Seleccione Causas, Averías o Elementos (Haga clic para añadir)</label>
-<div id="options-container" class="flex flex-wrap gap-2 max-h-56 overflow-y-auto p-2 border border-slate-200 rounded-lg bg-slate-50">
-<!-- Los botones se generan dinámicamente mediante JS -->
-</div>
-</div>
-<!-- Cuadro para texto personalizado -->
-<div class="mb-6">
-<label class="block text-sm font-medium text-slate-600 mb-1" for="custom-input">Añadir opción u observación personalizada</label>
-<div class="flex gap-2">
-<input type="text" id="custom-input" placeholder="Ej: Sustitución de rodamiento guía..." 
-class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
-<button type="button" id="btn-add-custom" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-1">
-<i class="fa-solid fa-plus"></i> Añadir
-</button>
-</div>
-</div>
-<button type="button" id="btn-reset" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-lg text-sm font-medium transition">
-<i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar Selección
-</button>
-</section>
-<!-- Vista Previa del Informe (Derecha) -->
-<section class="lg:col-span-6 flex flex-col">
-<div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200 flex-1 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center mb-4 border-b pb-2">
-<h2 class="text-lg font-semibold text-slate-700 flex items-center gap-2">
-<i class="fa-solid fa-file-lines text-indigo-600"></i> Vista Previa del Informe
-</h2>
-<span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full">Listo para generar</span>
-</div>
-<!-- Contenedor del Informe (Este es el bloque que se imprime/exporta) -->
-<div id="report-preview" class="bg-slate-50 border border-slate-300 rounded-lg p-6 text-slate-800 space-y-6 shadow-inner">
-<div class="border-b border-slate-200 pb-4">
-<h3 class="text-xl font-bold text-indigo-950 uppercase tracking-wide">Informe Técnico de Ascensores</h3>
-<p class="text-xs text-slate-500 mt-0.5">Asistencia técnica y resolución de incidencias</p>
-</div>
-<div class="grid grid-cols-2 gap-4 text-sm bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-<div>
-<span class="block text-xs font-semibold text-slate-400 uppercase">Comunidad:</span>
-<span id="preview-address" class="font-medium text-slate-700 italic">Sin especificar</span>
-</div>
-<div>
-<span class="block text-xs font-semibold text-slate-400 uppercase">Fecha:</span>
-<span id="preview-date" class="font-medium text-slate-700">--/--/----</span>
-</div>
-</div>
-<div>
-<h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Elementos y Diagnósticos Registrados:</h4>
-<div id="preview-ingredients" class="min-h-[120px] bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-wrap gap-2 items-start content-start">
-<span class="text-slate-400 text-sm italic">Ninguna opción seleccionada. Seleccione opciones o escriba una observación en el panel izquierdo.</span>
-</div>
-</div>
-<div class="pt-4 border-t border-slate-200 text-xs text-slate-400 flex justify-between items-center">
-<span>Firma del Técnico: ______________________</span>
-<span>Ref: INC-ASC</span>
-</div>
-</div>
-</div>
-<!-- Botones de Exportación -->
-<div class="mt-6 grid grid-cols-2 gap-4">
-<button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
-<i class="fa-solid fa-file-word text-lg"></i> Descargar Word
-</button>
-<button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
-<i class="fa-solid fa-file-pdf text-lg"></i> Descargar PDF
-</button>
-</div>
-</div>
-</section>
-</main>
-<!-- Script de lógica de la aplicación -->
-<script>
-// Lista de opciones predefinidas solicitadas
-const availableOptions = [
-"Ha filtrado agua", "Por tormenta", "Por golpe", "Por mal uso",
-"Por sobrecargar el ascensor", "Acto vandálico", "Lluvia", "Inundación",
-"Placa en corto", "Variador de puertas", "Variador maniobra", "Puertas de cabina",
-"Puertas exteriores", "dor123", "dor124", "Módulo IPM", "IGBT",
-"M1", "E1", "Deslizaderas cabina", "Poleas cabina", "Fotocélula",
-"CLT", "Pulsador", "Mirilla", "Botonera"
-];
-// Estado actual de los elementos seleccionados (actúa como los ingredientes)
-let selectedIngredients = [];
-// Elementos del DOM
-const optionsContainer = document.getElementById('options-container');
-const ingredientsContainer = document.getElementById('preview-ingredients');
-const inputAddress = document.getElementById('input-address');
-const inputDate = document.getElementById('input-date');
-const previewAddress = document.getElementById('preview-address');
-const previewDate = document.getElementById('preview-date');
-const headerDate = document.getElementById('header-date');
-const customInput = document.getElementById('custom-input');
-const btnAddCustom = document.getElementById('btn-add-custom');
-const btnReset = document.getElementById('btn-reset');
-const btnDownloadWord = document.getElementById('btn-download-word');
-const btnDownloadPdf = document.getElementById('btn-download-pdf');
-// Inicializar fecha actual por defecto
-function initDate() {
-const today = new Date().toISOString().split('T')[0];
-inputDate.value = today;
-updateDatePreview();
-}
-function updateDatePreview() {
-const val = inputDate.value;
-if (val) {
-const parts = val.split('-');
-const formatted = ⁠${parts[2]}/${parts[1]}/${parts[0]}⁠;
-previewDate.textContent = formatted;
-headerDate.textContent = formatted;
-} else {
-previewDate.textContent = '--/--/----';
-headerDate.textContent = '--/--/----';
-}
-}
-// Renderizar los botones de opciones iniciales
-function renderOptions() {
-optionsContainer.innerHTML = '';
-availableOptions.forEach(opt => {
-const isSelected = selectedIngredients.includes(opt);
-const btn = document.createElement('button');
-btn.type = 'button';
-btn.className = ⁠px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1.5 border shadow-xs ${ isSelected  ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'  : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100' }⁠;
-btn.innerHTML = ⁠<span>${opt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : '<i class="fa-solid fa-plus text-[10px] text-slate-400"></i>'}⁠;
-btn.addEventListener('click', () => {
-toggleIngredient(opt);
-});
-optionsContainer.appendChild(btn);
-});
-}
-// Añadir o quitar elemento seleccionado
-function toggleIngredient(item) {
-const index = selectedIngredients.indexOf(item);
-if (index > -1) {
-selectedIngredients.splice(index, 1);
-} else {
-selectedIngredients.push(item);
-}
-renderOptions();
-renderPreviewIngredients();
-}
-// Renderizar los elementos elegidos en la vista previa
-function renderPreviewIngredients() {
-if (selectedIngredients.length === 0) {
-ingredientsContainer.innerHTML = '<span class="text-slate-400 text-sm italic">Ninguna opción seleccionada. Seleccione opciones o escriba una observación en el panel izquierdo.</span>';
-return;
-}
-ingredientsContainer.innerHTML = '';
-selectedIngredients.forEach((item, index) => {
-const tag = document.createElement('div');
-tag.className = 'bg-indigo-50 text-indigo-800 border border-indigo-200 px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-2 shadow-2xs';
-tag.innerHTML = ⁠<span>• ${item}</span> <button type="button" class="text-indigo-400 hover:text-rose-600 transition" title="Eliminar"> <i class="fa-solid fa-xmark"></i> </button>⁠;
-// Botón para quitar elemento desde la vista previa
-tag.querySelector('button').addEventListener('click', () => {
-selectedIngredients.splice(index, 1);
-renderOptions();
-renderPreviewIngredients();
-});
-ingredientsContainer.appendChild(tag);
-});
-}
-// Eventos de entrada
-inputAddress.addEventListener('input', () => {
-const val = inputAddress.value.trim();
-previewAddress.textContent = val ? val : 'Sin especificar';
-previewAddress.classList.toggle('italic', !val);
-});
-inputDate.addEventListener('change', updateDatePreview);
-// Añadir elemento personalizado
-btnAddCustom.addEventListener('click', () => {
-const val = customInput.value.trim();
-if (val) {
-if (!selectedIngredients.includes(val)) {
-selectedIngredients.push(val);
-renderPreviewIngredients();
-}
-customInput.value = '';
-}
-});
-customInput.addEventListener('keypress', (e) => {
-if (e.key === 'Enter') {
-e.preventDefault();
-btnAddCustom.click();
-}
-});
-// Reiniciar
-btnReset.addEventListener('click', () => {
-selectedIngredients = [];
-inputAddress.value = '';
-previewAddress.textContent = 'Sin especificar';
-previewAddress.classList.add('italic');
-initDate();
-renderOptions();
-renderPreviewIngredients();
-});
-// Exportar a Word (.doc)
-btnDownloadWord.addEventListener('click', () => {
-const address = inputAddress.value.trim() || 'Sin especificar';
-const dateStr = previewDate.textContent;
-let htmlContent = ⁠<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'> <head><meta charset='utf-8'><title>Informe Técnico</title></head> <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;"> <h2 style="color: #1e1b4b; border-bottom: 2px solid #6366f1; padding-bottom: 5px;">INFORME TÉCNICO DE ASCENSORES</h2> <p><strong>Comunidad de Vecinos:</strong> ${address}</p> <p><strong>Fecha del Servicio:</strong> ${dateStr}</p> <h3>Elementos y Diagnósticos Registrados:</h3> <ul>⁠;
-if (selectedIngredients.length === 0) {
-htmlContent += ⁠<li><em>No se han registrado elementos.</em></li>⁠;
-} else {
-selectedIngredients.forEach(item => {
-htmlContent += ⁠<li>${item}</li>⁠;
-});
-}
-htmlContent += ⁠</ul> <br><br> <p>Firma del Técnico: ________________________________</p> </body> </html>⁠;
-const blob = new Blob(['\ufeff' + htmlContent], {
-type: 'application/msword'
-});
-const url = URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url;
-a.download = ⁠Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.doc⁠;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
-URL.revokeObjectURL(url);
-});
-// Exportar a PDF
-btnDownloadPdf.addEventListener('click', () => {
-const element = document.getElementById('report-preview');
-const address = inputAddress.value.trim() || 'informe';
-const opt = {
-margin:       10,
-filename:     ⁠Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.pdf⁠,
-image:        { type: 'jpeg', quality: 0.98 },
-html2canvas:  { scale: 2, useCORS: true },
-jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-};
-html2pdf().from(element).set(opt).save();
-});
-// Inicialización al cargar la página
-initDate();
-renderOptions();
-</script>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-16">
+
+    <!-- Cabecera principal -->
+    <header class="bg-indigo-900 text-white shadow-md py-4 px-6 mb-8">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-700 p-2.5 rounded-xl shadow-inner text-indigo-200">
+                    <i class="fa-solid fa-elevator text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">Gestión de Informes Técnicos</h1>
+                    <p class="text-xs text-indigo-300">Asistencia y averías de ascensores</p>
+                </div>
+            </div>
+            <div class="text-xs bg-indigo-950 px-3.5 py-2 rounded-xl border border-indigo-800 flex items-center gap-2 shadow-inner">
+                <i class="fa-regular fa-calendar-days text-indigo-400"></i>
+                <span id="header-date" class="font-medium text-slate-200">--/--/----</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Panel de Control y Selección (Izquierda) -->
+        <section class="lg:col-span-6 bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 flex flex-col gap-6">
+            <div>
+                <h2 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-1">
+                    <i class="fa-solid fa-pen-to-square text-indigo-600"></i> Datos de la Intervención
+                </h2>
+                <p class="text-xs text-slate-500">Introduce los datos de ubicación y selecciona los componentes o causas.</p>
+            </div>
+
+            <!-- Datos Generales -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-address">Dirección de la Comunidad</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 pointer-events-none">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <input type="text" id="input-address" placeholder="Ej: Av. de la Constitución 12, 3ºA" 
+                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="input-date">Fecha del Servicio</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 pointer-events-none">
+                            <i class="fa-regular fa-calendar"></i>
+                        </span>
+                        <input type="date" id="input-date" 
+                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- Botones de Opciones / Ingredientes -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">Causas, Averías y Componentes</label>
+                    <span class="text-[11px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-medium">Haz clic para añadir</span>
+                </div>
+                <div id="options-container" class="flex flex-wrap gap-2 max-h-56 overflow-y-auto p-3 bg-slate-50/70 border border-slate-200 rounded-xl shadow-inner">
+                    <!-- Los botones se generan por JavaScript -->
+                </div>
+            </div>
+
+            <!-- Entrada personalizada -->
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1" for="custom-input">Añadir elemento personalizado</label>
+                <div class="flex gap-2">
+                    <input type="text" id="custom-input" placeholder="Ej: Sustitución de cable de maniobra..." 
+                        class="flex-1 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-sm text-slate-700">
+                    <button type="button" id="btn-add-custom" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition shadow-sm flex items-center gap-1.5 shrink-0">
+                        <i class="fa-solid fa-plus"></i> Añadir
+                    </button>
+                </div>
+            </div>
+
+            <button type="button" id="btn-reset" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 py-2.5 rounded-xl text-xs font-semibold transition uppercase tracking-wider mt-2">
+                <i class="fa-solid fa-rotate-right mr-1.5"></i> Reiniciar Todo
+            </button>
+        </section>
+
+        <!-- Vista Previa del Informe (Derecha) -->
+        <section class="lg:col-span-6 flex flex-col">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 flex-1 flex flex-col justify-between">
+                
+                <div>
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-eye text-indigo-600"></i> Vista Previa en Vivo
+                        </h2>
+                        <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Actualizado
+                        </span>
+                    </div>
+
+                    <!-- Contenedor del Documento / Informe imprimible -->
+                    <div id="printable-report" class="bg-white border border-slate-200 rounded-xl p-6 text-slate-800 space-y-5 shadow-sm">
+                        <!-- Cabecera del Documento PDF/Word -->
+                        <div class="border-b border-slate-100 pb-4 flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-extrabold text-indigo-950 uppercase tracking-wide">Informe Técnico de Ascensores</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Control de Mantenimiento y Averías</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-mono uppercase font-semibold">Ref: INTR-ASC</span>
+                            </div>
+                        </div>
+
+                        <!-- Datos de la Comunidad -->
+                        <div class="grid grid-cols-2 gap-3 text-xs bg-slate-50/70 p-3.5 rounded-xl border border-slate-100">
+                            <div>
+                                <span class="block font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-0.5">Comunidad:</span>
+                                <span id="preview-address" class="font-medium text-slate-700 italic text-sm">Sin especificar</span>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-0.5">Fecha:</span>
+                                <span id="preview-date" class="font-medium text-slate-700 text-sm">--/--/----</span>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Elementos / Diagnósticos -->
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Elementos Seleccionados y Diagnósticos:</h4>
+                            <div id="preview-ingredients" class="min-h-[140px] bg-white p-3 rounded-xl border border-dashed border-slate-200 flex flex-wrap gap-2 items-start content-start">
+                                <span class="text-slate-400 text-xs italic m-auto py-8">Ningún elemento seleccionado. Selecciona opciones o añade notas en el panel izquierdo.</span>
+                            </div>
+                        </div>
+
+                        <!-- Pie de firma -->
+                        <div class="pt-6 border-t border-slate-100 text-xs text-slate-400 flex justify-between items-end mt-8">
+                            <div class="space-y-1">
+                                <p class="text-[11px] text-slate-500 font-medium">Observaciones / Técnico responsable</p>
+                                <p class="text-[10px] text-slate-400">Servicio técnico oficial autorizado</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="border-b border-slate-300 w-36 mb-1 h-6"></div>
+                                <span class="text-[10px] text-slate-500 uppercase font-semibold">Firma y Sello</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Exportación -->
+                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-3">
+                    <button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-xs">
+                        <i class="fa-solid fa-file-word text-base"></i> Descargar Word
+                    </button>
+                    <button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-xs">
+                        <i class="fa-solid fa-file-pdf text-base"></i> Descargar PDF
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script de lógica de la aplicación -->
+    <script>
+        // Opciones predefinidas solicitadas
+        const availableOptions = [
+            "ha filtrado agua", "por tormenta", "por golpe", "por mal uso", 
+            "por sobrecargar el ascensor", "acto vandálico", "lluvia", "inundación", 
+            "placa en corto", "variador de puertas", "variador maniobra", "puertas de cabina", 
+            "puertas exteriores", "dor123", "dor124", "módulo ipm", "IGBT", 
+            "m1", "e1", "deslizaderas cabina", "poleas cabina", "fotocelula", 
+            "clt", "pulsador", "mirilla", "botonera"
+        ];
+
+        // Estado interno de elementos seleccionados
+        let selectedIngredients = [];
+
+        // Referencias a elementos del DOM
+        const optionsContainer = document.getElementById('options-container');
+        const ingredientsContainer = document.getElementById('preview-ingredients');
+        const inputAddress = document.getElementById('input-address');
+        const inputDate = document.getElementById('input-date');
+        const previewAddress = document.getElementById('preview-address');
+        const previewDate = document.getElementById('preview-date');
+        const headerDate = document.getElementById('header-date');
+        const customInput = document.getElementById('custom-input');
+        const btnAddCustom = document.getElementById('btn-add-custom');
+        const btnReset = document.getElementById('btn-reset');
+        const btnDownloadWord = document.getElementById('btn-download-word');
+        const btnDownloadPdf = document.getElementById('btn-download-pdf');
+
+        // Inicializar fecha por defecto
+        function initApp() {
+            const today = new Date().toISOString().split('T')[0];
+            inputDate.value = today;
+            updateDateDisplay();
+            renderOptions();
+            renderPreviewList();
+        }
+
+        function updateDateDisplay() {
+            const val = inputDate.value;
+            if (val) {
+                const parts = val.split('-');
+                const formatted = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                previewDate.textContent = formatted;
+                headerDate.textContent = formatted;
+            } else {
+                previewDate.textContent = '--/--/----';
+                headerDate.textContent = '--/--/----';
+            }
+        }
+
+        // Renderizar botones de selección con soporte tactile y eventos robustos
+        function renderOptions() {
+            optionsContainer.innerHTML = '';
+            availableOptions.forEach(opt => {
+                const isSelected = selectedIngredients.includes(opt);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 border shadow-2xs cursor-pointer ${
+                    isSelected 
+                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm ring-2 ring-indigo-200' 
+                        : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+                }`;
+                
+                // Capitalizar primera letra para estética profesional
+                const displayOpt = opt.charAt(0).toUpperCase() + opt.slice(1);
+                btn.innerHTML = `<span>${displayOpt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : '<i class="fa-solid fa-plus text-[10px] text-slate-400"></i>'}`;
+                
+                // Evento de clic directo
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleOption(opt);
+                });
+
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function toggleOption(item) {
+            const index = selectedIngredients.indexOf(item);
+            if (index > -1) {
+                selectedIngredients.splice(index, 1);
+            } else {
+                selectedIngredients.push(item);
+            }
+            renderOptions();
+            renderPreviewList();
+        }
+
+        // Renderizar lista en la vista previa con opción de eliminar elemento individual
+        function renderPreviewList() {
+            if (selectedIngredients.length === 0) {
+                ingredientsContainer.innerHTML = '<span class="text-slate-400 text-xs italic m-auto py-8">Ningún elemento seleccionado. Selecciona opciones o añade notas en el panel izquierdo.</span>';
+                return;
+            }
+
+            ingredientsContainer.innerHTML = '';
+            selectedIngredients.forEach((item, index) => {
+                const tag = document.createElement('div');
+                tag.className = 'bg-indigo-50/80 text-indigo-900 border border-indigo-200/80 px-3 py-1.5 rounded-xl text-xs font-medium flex items-center gap-2 shadow-2xs animate-fadeIn';
+                
+                const formattedItem = item.charAt(0).toUpperCase() + item.slice(1);
+                tag.innerHTML = `
+                    <span>• ${formattedItem}</span>
+                    <button type="button" class="text-indigo-400 hover:text-rose-600 transition p-0.5 rounded-full hover:bg-white" title="Quitar elemento">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </button>
+                `;
+                
+                tag.querySelector('button').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectedIngredients.splice(index, 1);
+                    renderOptions();
+                    renderPreviewList();
+                });
+
+                ingredientsContainer.appendChild(tag);
+            });
+        }
+
+        // Eventos de entrada de texto de dirección
+        inputAddress.addEventListener('input', () => {
+            const val = inputAddress.value.trim();
+            previewAddress.textContent = val ? val : 'Sin especificar';
+            previewAddress.classList.toggle('italic', !val);
+        });
+
+        inputDate.addEventListener('change', updateDateDisplay);
+
+        // Añadir opción personalizada desde el input de texto
+        function handleAddCustom() {
+            const val = customInput.value.trim();
+            if (val) {
+                if (!selectedIngredients.includes(val)) {
+                    selectedIngredients.push(val);
+                    renderPreviewList();
+                }
+                customInput.value = '';
+            }
+        }
+
+        btnAddCustom.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleAddCustom();
+        });
+
+        customInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAddCustom();
+            }
+        });
+
+        // Reiniciar formulario
+        btnReset.addEventListener('click', () => {
+            selectedIngredients = [];
+            inputAddress.value = '';
+            previewAddress.textContent = 'Sin especificar';
+            previewAddress.classList.add('italic');
+            initApp();
+        });
+
+        // Exportación a Word (.doc) mediante Blob compatible
+        btnDownloadWord.addEventListener('click', () => {
+            const address = inputAddress.value.trim() || 'Sin_especificar';
+            const dateStr = previewDate.textContent;
+            
+            let htmlContent = `
+                <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'><title>Informe Técnico</title></head>
+                <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 20px;">
+                    <h2 style="color: #1e1b4b; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px;">INFORME TÉCNICO DE ASCENSORES</h2>
+                    <p><strong>Comunidad de Vecinos:</strong> ${address}</p>
+                    <p><strong>Fecha del Servicio:</strong> ${dateStr}</p>
+                    <h3 style="color: #475569; margin-top: 20px;">Elementos y Diagnósticos Registrados:</h3>
+                    <ul>
+            `;
+
+            if (selectedIngredients.length === 0) {
+                htmlContent += `<li><em>No se han registrado elementos o incidencias.</em></li>`;
+            } else {
+                selectedIngredients.forEach(item => {
+                    htmlContent += `<li style="margin-bottom: 6px;">${item.charAt(0).toUpperCase() + item.slice(1)}</li>`;
+                });
+            }
+
+            htmlContent += `
+                    </ul>
+                    <br><br><br>
+                    <p style="border-top: 1px solid #cbd5e1; width: 250px; padding-top: 5px;">Firma y Sello del Técnico</p>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Exportar a PDF utilizando html2pdf.js con alta calidad
+        btnDownloadPdf.addEventListener('click', () => {
+            const element = document.getElementById('printable-report');
+            const address = inputAddress.value.trim() || 'informe_ascensor';
+            const opt = {
+                margin:       10,
+                filename:     `Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        });
+
+        // Ejecutar inicialización al cargar la ventana
+        window.onload = initApp;
+    </script>
 </body>
 </html>
-
