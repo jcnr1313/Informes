@@ -72,6 +72,36 @@ animation: pulse-ring 1.5s infinite ease-in-out;
 </div>
 <span id="toast-message" class="font-medium tracking-wide">Acción realizada correctamente</span>
 </div>
+<!-- Modal Flotante de Ayuda Técnica -->
+<div id="help-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden animate-fadeIn">
+<div class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-slate-200 dark:border-slate-800 space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm font-bold">
+<i class="fa-solid fa-circle-info"></i>
+</div>
+<h3 id="help-title" class="font-bold text-sm tracking-wide">Ayuda Técnica</h3>
+</div>
+<button type="button" id="btn-close-help" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+<i class="fa-solid fa-xmark text-base"></i>
+</button>
+</div>
+<div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+<div>
+<strong class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Función del Componente:</strong>
+<p id="help-func" class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800"></p>
+</div>
+<div>
+<strong class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Afectación / Daño Habitual:</strong>
+<p id="help-damage" class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800"></p>
+</div>
+</div>
+<div class="pt-2 flex justify-end">
+<button type="button" id="btn-close-help-2" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">Entendido</button>
+</div>
+</div>
+</div>
+
 <!-- Cabecera principal moderna con efecto glow -->
 <header class="sticky top-0 z-30 glass-card border-b border-slate-200/80 dark:border-slate-800/80 py-4 px-6 shadow-sm transition-all duration-300">
 <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -98,6 +128,7 @@ animation: pulse-ring 1.5s infinite ease-in-out;
 </div>
 </div>
 </header>
+
 <main class="max-w-7xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
 <!-- Panel de Control y Selección (Izquierda) -->
 <section class="lg:col-span-7 glass-card rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 flex flex-col gap-6 transition-all-smooth">
@@ -110,7 +141,8 @@ Datos y Componentes de la Intervención
 </h2>
 <p class="text-xs text-slate-500 dark:text-slate-400 ml-10">Selecciona componentes categorizados, usa plantillas o dicta notas por voz en directo.</p>
 </div>
-<!-- Plantillas de Averías Frecuentes con diseño moderno -->
+
+<!-- Plantillas de Averías Frecuentes -->
 <div class="bg-gradient-to-br from-indigo-50/80 via-purple-50/40 to-white dark:from-indigo-950/40 dark:via-slate-900 dark:to-indigo-950/20 p-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-inner">
 <label class="block text-xs font-bold text-indigo-950 dark:text-indigo-300 uppercase tracking-wider mb-2.5 flex items-center gap-2">
 <i class="fa-solid fa-bolt text-amber-500"></i> Plantillas Rápidas de Averías Frecuentes
@@ -134,7 +166,8 @@ Datos y Componentes de la Intervención
 </button>
 </div>
 </div>
-<!-- Datos Generales (Modificado campo Ascensor) -->
+
+<!-- Datos Generales -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 <div class="space-y-1.5">
 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400" for="input-address">Dirección / Comunidad</label>
@@ -184,13 +217,15 @@ class="w-full pl-10 pr-4 py-3 bg-slate-50/80 dark:bg-slate-800/80 border border-
 </div>
 </div>
 <hr class="border-slate-200/60 dark:border-slate-800">
-<!-- Opciones Categorizadas -->
+
+<!-- Opciones Categorizadas con icono 'i' interactivo flotante -->
 <div>
 <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5 block">Componentes y Causas (Categorizados)</label>
 <div id="options-container" class="space-y-4 max-h-56 overflow-y-auto p-4 bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 rounded-2xl shadow-inner">
-<!-- Generado dinámicamente con iconos de ayuda 'i' -->
+<!-- Generado dinámicamente -->
 </div>
 </div>
+
 <!-- Entrada personalizada con Dictado por Voz -->
 <div class="space-y-1.5">
 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400" for="custom-input">Añadir elemento o nota personalizada</label>
@@ -209,6 +244,7 @@ class="w-full pl-4 pr-10 py-2.5 bg-slate-50/80 dark:bg-slate-800/80 border borde
 <p id="voice-status-text" class="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold hidden animate-pulse pl-1">🎙️ Escuchando voz... Habla ahora.</p>
 </div>
 <hr class="border-slate-200/60 dark:border-slate-800">
+
 <!-- Sección Opcional: Presupuesto / Mano de Obra -->
 <div class="bg-slate-50/80 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 space-y-3">
 <div class="flex items-center justify-between">
@@ -238,6 +274,7 @@ Incluir Presupuesto / Parte de Trabajo
 </div>
 </div>
 </div>
+
 <!-- Subida de Fotos -->
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Adjuntar Fotografías</label>
@@ -250,10 +287,12 @@ Incluir Presupuesto / Parte de Trabajo
 </label>
 <div id="photos-preview-container" class="flex flex-wrap gap-2.5 mt-3 empty:hidden"></div>
 </div>
+
 <button type="button" id="btn-reset" class="w-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 dark:hover:bg-rose-950/30 dark:hover:text-rose-400 text-slate-600 dark:text-slate-300 py-3 rounded-2xl text-xs font-bold transition uppercase tracking-wider mt-1 cursor-pointer border border-transparent shadow-2xs flex items-center justify-center gap-2">
 <i class="fa-solid fa-rotate-right"></i> Reiniciar Todo el Formulario
 </button>
 </section>
+
 <!-- Panel de Acciones y Generación (Derecha) -->
 <section class="lg:col-span-5 flex flex-col gap-6">
 <div class="glass-card rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 flex-1 flex flex-col justify-between transition-all-smooth">
@@ -329,7 +368,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 </div>
 </div>
-<!-- Historial de Borradores / Informes Recientes -->
+<!-- Historial de Borradores -->
 <div class="glass-card rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/80 dark:border-slate-800 p-6 transition-all-smooth">
 <div class="flex justify-between items-center mb-3.5">
 <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
@@ -345,6 +384,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 </section>
 </main>
+
 <!-- Barra de Acciones Flotante Móvil -->
 <div class="fixed bottom-0 left-0 right-0 glass-card border-t border-slate-200 dark:border-slate-800 p-3.5 lg:hidden z-40 flex items-center justify-around shadow-2xl backdrop-blur-2xl">
 <button type="button" id="mobile-btn-preview" class="bg-indigo-600 text-white px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-indigo-600/30">
@@ -357,7 +397,8 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <i class="fa-brands fa-whatsapp"></i> WhatsApp
 </button>
 </div>
-<!-- MODAL DE VISTA PREVIA DETALLADA -->
+
+<!-- MODAL DE VISTA PREVIA DETALLADA (Sin referencia superior, sin firma, sin texto de técnico inferior) -->
 <div id="preview-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 hidden animate-fadeIn">
 <div class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800">
 <!-- Cabecera del Modal -->
@@ -375,9 +416,10 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <i class="fa-solid fa-xmark text-lg"></i>
 </button>
 </div>
+
 <!-- Cuerpo Imprimible / Exportable -->
 <div id="printable-report" class="p-8 sm:p-12 overflow-y-auto space-y-8 bg-white text-slate-800 flex-1">
-<!-- Cabecera Documento con Logo Arriba a la Derecha -->
+<!-- Cabecera Documento (Logo arriba a la derecha, sin referencia arriba) -->
 <div class="border-b-2 border-indigo-950/10 pb-6 flex justify-between items-center">
 <div class="flex items-center gap-4">
 <div class="w-16 h-16 bg-indigo-900 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm">
@@ -391,10 +433,10 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <div class="text-right">
 <!-- Logotipo Arriba a la Derecha -->
 <img src="logo.jpeg" alt="Logo Empresa" class="h-16 w-auto max-w-[120px] object-contain ml-auto rounded-xl shadow-xs" onerror="this.style.display='none'">
-<span class="text-[10px] bg-indigo-50 text-indigo-900 px-3 py-1 rounded-xl font-mono uppercase font-bold border border-indigo-100 inline-block mt-1">Ref: IT-ASC-2026</span>
 </div>
 </div>
-<!-- Datos Comunidad y Estado (Actualizado campo Ascensor) -->
+
+<!-- Datos Comunidad y Estado -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80 shadow-2xs">
 <div>
 <span class="block font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-1">Comunidad:</span>
@@ -409,6 +451,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <span id="modal-date-status" class="font-bold text-indigo-700 text-xs">--/--/----</span>
 </div>
 </div>
+
 <!-- Redacción Generada Extensa -->
 <div class="space-y-4">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
@@ -422,6 +465,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </h4>
 <div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
 </div>
+
 <!-- Sección de Presupuesto (Si está activo) -->
 <div id="report-budget-section" class="space-y-4 hidden">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
@@ -433,6 +477,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <div class="flex justify-between border-t border-slate-200 pt-3 font-extrabold text-indigo-950 text-sm"><span>TOTAL PRESUPUESTO:</span> <span id="bud-total">0.00 €</span></div>
 </div>
 </div>
+
 <!-- Sección de Fotos -->
 <div id="report-photos-section" class="space-y-4 hidden">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
@@ -440,26 +485,15 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </h4>
 <div id="report-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2"></div>
 </div>
-<!-- Firma Digital Canvas -->
-<div class="pt-6 border-t border-slate-200">
-<div class="flex justify-between items-center mb-3">
-<span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Firma del Responsable / Cliente:</span>
-<button type="button" id="btn-clear-signature" class="text-xs font-bold text-rose-600 hover:text-rose-700 hover:underline cursor-pointer">Limpiar Firma</button>
-</div>
-<div class="border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/80 w-full h-36 relative overflow-hidden shadow-inner">
-<canvas id="signature-canvas" class="w-full h-full cursor-crosshair"></canvas>
-</div>
-</div>
-<!-- Pie de Documento con Logo Centrado abajo -->
+
+<!-- Pie de Documento con Logo Centrado abajo (Sin firma y sin texto de técnico autorizado) -->
 <div class="pt-10 border-t border-slate-200 text-xs text-slate-500 flex flex-col items-center justify-center gap-3 mt-10 text-center">
 <!-- Logotipo Abajo al Medio -->
 <img src="logo.jpeg" alt="Logo Empresa" class="h-12 w-auto max-w-[100px] object-contain rounded-lg shadow-xs my-1" onerror="this.style.display='none'">
-<div>
-<p class="font-bold text-slate-800">Técnico Especialista Autorizado — Servicio Oficial de Mantenimiento</p>
 <p class="text-[10px] text-slate-400 mt-0.5">Documento generado conforme a la normativa de seguridad aplicable en ascensores</p>
 </div>
 </div>
-</div>
+
 <!-- Footer Modal -->
 <div class="bg-slate-100 dark:bg-slate-900 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-3">
 <button type="button" id="btn-close-modal-2" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-700 dark:text-slate-300 px-5 py-2.5 rounded-2xl text-xs font-bold transition cursor-pointer">
@@ -471,7 +505,8 @@ Cerrar Vista
 </div>
 </div>
 </div>
-<!-- Script de Lógica con Modificaciones -->
+
+<!-- Script de Lógica -->
 <script>
 const categorizedOptions = {
 "Maniobra y Electrónica": ["transformador", "variador maniobra", "variador de puertas", "placa en corto", "módulo ipm", "IGBT", "m1", "e1", "clt"],
@@ -586,9 +621,14 @@ const darkIcon = document.getElementById('dark-icon');
 const btnVoiceDictation = document.getElementById('btn-voice-dictation');
 const voiceIcon = document.getElementById('voice-icon');
 const voiceStatusText = document.getElementById('voice-status-text');
-const canvas = document.getElementById('signature-canvas');
-const ctx = canvas.getContext('2d');
-let painting = false;
+
+// Modal de Ayuda
+const helpModal = document.getElementById('help-modal');
+const helpTitle = document.getElementById('help-title');
+const helpFunc = document.getElementById('help-func');
+const helpDamage = document.getElementById('help-damage');
+const btnCloseHelp = document.getElementById('btn-close-help');
+const btnCloseHelp2 = document.getElementById('btn-close-help-2');
 
 function initApp() {
 const today = new Date().toISOString().split('T')[0];
@@ -605,7 +645,6 @@ updateDateDisplay();
 renderOptions();
 updateSummary();
 renderHistoryList();
-resizeCanvas();
 }
 
 function showToast(message, type = 'success') {
@@ -644,7 +683,6 @@ const transcript = event.results[0][0].transcript;
 customInput.value = transcript;
 };
 recognition.onerror = (event) => {
-console.error('Error de voz:', event.error);
 stopVoiceRecognition();
 showToast('Error en el dictado por voz', 'warning');
 };
@@ -697,38 +735,6 @@ localStorage.setItem('saved_whatsapp', inputWhatsapp.value);
 localStorage.setItem('saved_email', inputEmail.value);
 }
 
-function resizeCanvas() {
-const rect = canvas.getBoundingClientRect();
-canvas.width = rect.width;
-canvas.height = rect.height;
-}
-
-canvas.addEventListener('mousedown', startPosition);
-canvas.addEventListener('mouseup', finishedPosition);
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('touchstart', (e) => { startPosition(e.touches[0]); e.preventDefault(); });
-canvas.addEventListener('touchend', finishedPosition);
-canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
-
-function startPosition(e) { painting = true; draw(e); }
-function finishedPosition() { painting = false; ctx.beginPath(); }
-function draw(e) {
-if (!painting) return;
-const rect = canvas.getBoundingClientRect();
-ctx.lineWidth = 2.5;
-ctx.lineCap = 'round';
-ctx.strokeStyle = '#1e1b4b';
-ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-}
-
-document.getElementById('btn-clear-signature').addEventListener('click', () => {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-showToast('Firma borrada');
-});
-
 function updateDateDisplay() {
 const val = inputDate.value;
 if (val) {
@@ -739,7 +745,7 @@ summaryDate.textContent = formatted;
 }
 }
 
-// Renderizado con iconos de información 'i' explicativa en cada opción
+// Renderizado con cuadro de diálogo flotante al pulsar la 'i'
 function renderOptions() {
 optionsContainer.innerHTML = '';
 for (const [category, items] of Object.entries(categorizedOptions)) {
@@ -762,17 +768,22 @@ e.preventDefault();
 toggleOption(opt);
 });
 
-// Botón 'i' de información con descripción detallada
+// Botón 'i' que abre el cuadro de diálogo flotante elegante
 const infoBtn = document.createElement('button');
 infoBtn.type = 'button';
 infoBtn.className = `px-2 py-1.5 rounded-r-xl text-xs border-y border-r transition-all cursor-pointer flex items-center justify-center ${isSelected ? 'bg-indigo-700 text-indigo-200 border-indigo-600' : 'bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-slate-600'}`;
 infoBtn.innerHTML = `<i class="fa-solid fa-info text-[10px]"></i>`;
-infoBtn.title = "Pulsa para ver la explicación técnica de este elemento";
+infoBtn.title = "Ver información técnica";
 infoBtn.addEventListener('click', (e) => {
 e.stopPropagation();
-const info = detailedKnowledgeBase[opt];
-const desc = info ? `Función: ${info.func}\nAfectación/Daño: ${info.damage}` : `Componente o causa registrada: ${displayOpt}.`;
-alert(`ℹ️ Información sobre [ ${displayOpt} ]:\n\n${desc}`);
+const info = detailedKnowledgeBase[opt] || {
+func: "Garantizar la correcta transmisión de señales o soporte estructural en el sistema del ascensor.",
+damage: "Comportamiento anómalo o interrupción del servicio que requiere comprobación técnica."
+};
+helpTitle.textContent = `Información: ${displayOpt}`;
+helpFunc.textContent = info.func;
+helpDamage.textContent = info.damage;
+helpModal.classList.remove('hidden');
 });
 
 wrapper.appendChild(btn);
@@ -783,6 +794,10 @@ catDiv.appendChild(flexDiv);
 optionsContainer.appendChild(catDiv);
 }
 }
+
+const closeHelpModal = () => helpModal.classList.add('hidden');
+btnCloseHelp.addEventListener('click', closeHelpModal);
+btnCloseHelp2.addEventListener('click', closeHelpModal);
 
 function toggleOption(item) {
 const index = selectedIngredients.indexOf(item);
@@ -1004,13 +1019,6 @@ let htmlContent = `
 <div>${diagText}</div>
 <h3 style="color: #312e81; margin-top: 20px;">2. Acciones Correctoras y Recomendaciones</h3>
 <div>${recText}</div>
-<table width="100%" style="border-top: 1px solid #cbd5e1; padding-top: 20px; text-align: center; margin-top: 40px;">
-<tr>
-<td>
-<p style="font-size: 11px; color: #666; margin: 0;">Técnico Especialista Autorizado — Servicio Oficial de Mantenimiento</p>
-</td>
-</tr>
-</table>
 </body>
 </html>
 `;
