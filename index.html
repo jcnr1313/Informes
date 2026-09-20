@@ -110,12 +110,12 @@ Datos y Componentes de la Intervención
 </h2>
 <p class="text-xs text-slate-500 dark:text-slate-400 ml-10">Selecciona componentes categorizados, usa plantillas o dicta notas por voz en directo.</p>
 </div>
-<!-- Plantillas de Averías Frecuentes con diseño moderno -->
+<!-- Plantillas de Averías Frecuentes con diseño moderno (Actualizado con 4 opciones) -->
 <div class="bg-gradient-to-br from-indigo-50/80 via-purple-50/40 to-white dark:from-indigo-950/40 dark:via-slate-900 dark:to-indigo-950/20 p-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-inner">
 <label class="block text-xs font-bold text-indigo-950 dark:text-indigo-300 uppercase tracking-wider mb-2.5 flex items-center gap-2">
 <i class="fa-solid fa-bolt text-amber-500"></i> Plantillas Rápidas de Averías Frecuentes
 </label>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 <button type="button" class="preset-btn group relative bg-white/90 dark:bg-slate-800/90 hover:bg-indigo-600 hover:text-white text-slate-700 dark:text-slate-200 border border-indigo-100 dark:border-indigo-900/60 text-xs py-2 px-3 rounded-xl font-semibold transition-all duration-200 cursor-pointer text-left truncate shadow-2xs hover:shadow-md hover:-translate-y-0.5 flex items-center gap-2" data-preset="rescate">
 <span class="w-2 h-2 rounded-full bg-rose-500 group-hover:bg-white animate-pulse"></span>
 <span class="truncate">🚨 Rescate / Parada</span>
@@ -127,6 +127,10 @@ Datos y Componentes de la Intervención
 <button type="button" class="preset-btn group relative bg-white/90 dark:bg-slate-800/90 hover:bg-indigo-600 hover:text-white text-slate-700 dark:text-slate-200 border border-indigo-100 dark:border-indigo-900/60 text-xs py-2 px-3 rounded-xl font-semibold transition-all duration-200 cursor-pointer text-left truncate shadow-2xs hover:shadow-md hover:-translate-y-0.5 flex items-center gap-2" data-preset="tormenta">
 <span class="w-2 h-2 rounded-full bg-sky-500 group-hover:bg-white"></span>
 <span class="truncate">⚡ Tormenta / Agua</span>
+</button>
+<button type="button" class="preset-btn group relative bg-white/90 dark:bg-slate-800/90 hover:bg-indigo-600 hover:text-white text-slate-700 dark:text-slate-200 border border-indigo-100 dark:border-indigo-900/60 text-xs py-2 px-3 rounded-xl font-semibold transition-all duration-200 cursor-pointer text-left truncate shadow-2xs hover:shadow-md hover:-translate-y-0.5 flex items-center gap-2" data-preset="vandalico">
+<span class="w-2 h-2 rounded-full bg-purple-500 group-hover:bg-white"></span>
+<span class="truncate">⚠️ Acto Vandálico</span>
 </button>
 </div>
 </div>
@@ -466,7 +470,7 @@ Cerrar Vista
 </div>
 </div>
 </div>
-<!-- Script de Lógica Corregida -->
+<!-- Script de Lógica con la Plantilla Añadida -->
 <script>
 const categorizedOptions = {
 "Maniobra y Electrónica": ["transformador", "variador maniobra", "variador de puertas", "placa en corto", "módulo ipm", "IGBT", "m1", "e1", "clt"],
@@ -518,12 +522,17 @@ damage: "Oxidación de contactos en interruptores de foso y posibles cortocircui
 "por tormenta": {
 func: "Proteger el sistema electrónico frente a sobretensiones transitorias y descargas atmosféricas.",
 damage: "Daños en fuentes de alimentación, tarjetas de maniobra y componentes semiconductores sensibles."
+},
+"acto vandálico": {
+func: "Preservar la integridad física de los elementos expuestos a manipulación externa en cabina y accesos.",
+damage: "Daños intencionados en botoneras, pulsadores o puertas que impiden el normal funcionamiento y seguridad del equipo."
 }
 };
 const presetsData = {
 "rescate": ["limitador", "micros", "cuñas"],
 "puertas": ["variador de puertas", "puertas de cabina", "fotocelula"],
-"tormenta": ["transformador", "placa en corto", "por tormenta"]
+"tormenta": ["transformador", "placa en corto", "por tormenta"],
+"vandalico": ["acto vandálico", "pulsador", "botonera"]
 };
 let selectedIngredients = [];
 let uploadedPhotos = [];
@@ -1045,7 +1054,6 @@ const body = encodeURIComponent(`Estimado administrador / cliente,\n\nAdjunto lo
 window.open(`mailto:${email}?subject=${subject}&body=${body}`);
 });
 
-// Inicialización garantizada al cargar la ventana
 window.addEventListener('DOMContentLoaded', initApp);
 </script>
 </body>
