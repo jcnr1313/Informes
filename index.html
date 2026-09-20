@@ -304,22 +304,22 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 <!-- Botones Principales -->
 <div class="mt-8 pt-6 border-t border-slate-200/60 dark:border-slate-800 space-y-3">
-<button id="btn-open-preview" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg shadow-indigo-600/30 transition-all duration-300 flex items-center justify-center gap-2.5 text-sm cursor-pointer hover:scale-[1.02] active:scale-95">
+<button type="button" id="btn-open-preview" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg shadow-indigo-600/30 transition-all duration-300 flex items-center justify-center gap-2.5 text-sm cursor-pointer hover:scale-[1.02] active:scale-95">
 <i class="fa-solid fa-eye text-base"></i> Ver Vista Previa del Informe
 </button>
 <div class="grid grid-cols-2 gap-2.5">
-<button id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-blue-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
+<button type="button" id="btn-download-word" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-blue-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
 <i class="fa-solid fa-file-word text-sm"></i> Descargar Word
 </button>
-<button id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-rose-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
+<button type="button" id="btn-download-pdf" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-rose-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
 <i class="fa-solid fa-file-pdf text-sm"></i> Descargar PDF
 </button>
 </div>
 <div class="grid grid-cols-2 gap-2.5 pt-1">
-<button id="btn-send-whatsapp" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-emerald-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
+<button type="button" id="btn-send-whatsapp" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-emerald-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
 <i class="fa-brands fa-whatsapp text-sm"></i> Enviar WhatsApp
 </button>
-<button id="btn-send-email" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-sky-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
+<button type="button" id="btn-send-email" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 px-3 rounded-xl shadow-md shadow-sky-600/25 transition flex items-center justify-center gap-2 text-xs cursor-pointer hover:scale-[1.02] active:scale-95">
 <i class="fa-solid fa-envelope text-sm"></i> Enviar Email
 </button>
 </div>
@@ -376,7 +376,9 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <!-- Cabecera Documento con Logo Arriba a la Izquierda -->
 <div class="border-b-2 border-indigo-950/10 pb-6 flex justify-between items-center">
 <div class="flex items-center gap-4">
-<img src="logo.jpeg" alt="Logo Empresa" class="w-16 h-16 object-contain rounded-2xl border border-slate-100 shadow-sm" onerror="this.style.display='none'">
+<div class="w-16 h-16 bg-indigo-900 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm">
+<i class="fa-solid fa-elevator"></i>
+</div>
 <div>
 <h2 class="text-xl font-extrabold text-indigo-950 uppercase tracking-tight">Informe Técnico de Mantenimiento</h2>
 <p class="text-xs font-medium text-slate-500">Servicio Oficial de Asistencia Técnica en Aparatos Elevadores</p>
@@ -444,7 +446,9 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 <!-- Pie de Documento con Logo Centrado -->
 <div class="pt-10 border-t border-slate-200 text-xs text-slate-500 flex flex-col items-center justify-center gap-3 mt-10 text-center">
-<img src="logo.jpeg" alt="Logo Empresa Centro" class="w-12 h-12 object-contain rounded-full border border-slate-100 shadow-sm opacity-90" onerror="this.style.display='none'">
+<div class="w-10 h-10 bg-indigo-900 rounded-full flex items-center justify-center text-white text-lg shadow-sm opacity-90">
+<i class="fa-solid fa-elevator"></i>
+</div>
 <div>
 <p class="font-bold text-slate-800">Técnico Especialista Autorizado — Servicio Oficial de Mantenimiento</p>
 <p class="text-[10px] text-slate-400 mt-0.5">Documento generado conforme a la normativa de seguridad aplicable en ascensores</p>
@@ -462,7 +466,7 @@ Cerrar Vista
 </div>
 </div>
 </div>
-<!-- Script de Lógica Avanzada Completa con Dictado por Voz -->
+<!-- Script de Lógica Corregida -->
 <script>
 const categorizedOptions = {
 "Maniobra y Electrónica": ["transformador", "variador maniobra", "variador de puertas", "placa en corto", "módulo ipm", "IGBT", "m1", "e1", "clt"],
@@ -496,7 +500,7 @@ func: "Gestionar el perfil de velocidad, aceleración y deceleración del motor 
 damage: "Paradas bruscas, tirones en el arranque y errores de nivelación en planta."
 },
 "variador de puertas": {
-func: "Controlar a apertura y cierre suave y seguro de las puertas automáticas.",
+func: "Controlar la apertura y cierre suave y seguro de las puertas automáticas.",
 damage: "Rebotes constantes, bloqueo en el operador o fallos en la inversión por seguridad."
 },
 "placa en corto": {
@@ -523,6 +527,7 @@ const presetsData = {
 };
 let selectedIngredients = [];
 let uploadedPhotos = [];
+
 // Referencias DOM
 const optionsContainer = document.getElementById('options-container');
 const inputAddress = document.getElementById('input-address');
@@ -563,21 +568,18 @@ const btnDownloadPdf = document.getElementById('btn-download-pdf');
 const btnModalDownloadPdf = document.getElementById('btn-modal-download-pdf');
 const btnSendWhatsapp = document.getElementById('btn-send-whatsapp');
 const btnSendEmail = document.getElementById('btn-send-email');
-// Botones móviles
 const mobileBtnPreview = document.getElementById('mobile-btn-preview');
 const mobileBtnPdf = document.getElementById('mobile-btn-pdf');
 const mobileBtnWhatsapp = document.getElementById('mobile-btn-whatsapp');
-// Modo Oscuro
 const btnToggleDark = document.getElementById('btn-toggle-dark');
 const darkIcon = document.getElementById('dark-icon');
-// Dictado por voz
 const btnVoiceDictation = document.getElementById('btn-voice-dictation');
 const voiceIcon = document.getElementById('voice-icon');
 const voiceStatusText = document.getElementById('voice-status-text');
-// Canvas Firma
 const canvas = document.getElementById('signature-canvas');
 const ctx = canvas.getContext('2d');
 let painting = false;
+
 function initApp() {
 const today = new Date().toISOString().split('T')[0];
 inputDate.value = today;
@@ -595,7 +597,7 @@ updateSummary();
 renderHistoryList();
 resizeCanvas();
 }
-// Sistema Toast
+
 function showToast(message, type = 'success') {
 const toast = document.getElementById('toast-notification');
 const msg = document.getElementById('toast-message');
@@ -607,14 +609,14 @@ setTimeout(() => {
 toast.classList.add('translate-x-full', 'opacity-0');
 }, 3000);
 }
-// Toggle Dark Mode
+
 btnToggleDark.addEventListener('click', () => {
 document.documentElement.classList.toggle('dark');
 const isDark = document.documentElement.classList.contains('dark');
 localStorage.setItem('dark_mode', isDark);
 darkIcon.className = isDark ? 'fa-solid fa-sun text-sm' : 'fa-solid fa-moon text-sm';
 });
-// Configuración Web Speech API (Dictado por Voz)
+
 let recognition = null;
 if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -640,11 +642,13 @@ recognition.onend = () => {
 stopVoiceRecognition();
 };
 }
+
 function stopVoiceRecognition() {
 voiceIcon.className = 'fa-solid fa-microphone text-sm';
 btnVoiceDictation.classList.remove('recording-pulse');
 voiceStatusText.classList.add('hidden');
 }
+
 btnVoiceDictation.addEventListener('click', () => {
 if (!recognition) {
 alert('Tu navegador no soporta el dictado por voz. Prueba utilizando Google Chrome.');
@@ -656,11 +660,11 @@ recognition.start();
 recognition.stop();
 }
 });
-// Toggle presupuesto
+
 checkBudget.addEventListener('change', () => {
 budgetFields.classList.toggle('hidden', !checkBudget.checked);
 });
-// Presets
+
 document.querySelectorAll('.preset-btn').forEach(btn => {
 btn.addEventListener('click', () => {
 const key = btn.getAttribute('data-preset');
@@ -675,24 +679,27 @@ showToast('Plantilla aplicada correctamente');
 }
 });
 });
+
 function saveToStorage() {
 localStorage.setItem('saved_address', inputAddress.value);
 localStorage.setItem('saved_elevator_id', inputElevatorId.value);
 localStorage.setItem('saved_whatsapp', inputWhatsapp.value);
 localStorage.setItem('saved_email', inputEmail.value);
 }
+
 function resizeCanvas() {
 const rect = canvas.getBoundingClientRect();
 canvas.width = rect.width;
 canvas.height = rect.height;
 }
-// Firma táctil y ratón
+
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', finishedPosition);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('touchstart', (e) => { startPosition(e.touches[0]); e.preventDefault(); });
 canvas.addEventListener('touchend', finishedPosition);
 canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
+
 function startPosition(e) { painting = true; draw(e); }
 function finishedPosition() { painting = false; ctx.beginPath(); }
 function draw(e) {
@@ -706,33 +713,36 @@ ctx.stroke();
 ctx.beginPath();
 ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
 }
+
 document.getElementById('btn-clear-signature').addEventListener('click', () => {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 showToast('Firma borrada');
 });
+
 function updateDateDisplay() {
 const val = inputDate.value;
 if (val) {
 const parts = val.split('-');
-const formatted = ⁠${parts[2]}/${parts[1]}/${parts[0]}⁠;
+const formatted = `${parts[2]}/${parts[1]}/${parts[0]}`;
 headerDate.textContent = formatted;
 summaryDate.textContent = formatted;
 }
 }
+
 function renderOptions() {
 optionsContainer.innerHTML = '';
 for (const [category, items] of Object.entries(categorizedOptions)) {
 const catDiv = document.createElement('div');
-catDiv.innerHTML = ⁠<p class="text-[10px] font-extrabold text-indigo-900 dark:text-indigo-400 uppercase tracking-wider mb-2">${category}</p>⁠;
+catDiv.innerHTML = `<p class="text-[10px] font-extrabold text-indigo-900 dark:text-indigo-400 uppercase tracking-wider mb-2">${category}</p>`;
 const flexDiv = document.createElement('div');
 flexDiv.className = 'flex flex-wrap gap-2 mb-2.5';
 items.forEach(opt => {
 const isSelected = selectedIngredients.includes(opt);
 const btn = document.createElement('button');
 btn.type = 'button';
-btn.className = ⁠px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 border cursor-pointer shadow-2xs hover:scale-105 active:scale-95 ${ isSelected  ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-600/30 ring-2 ring-indigo-400/30'  : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700' }⁠;
+btn.className = `px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 border cursor-pointer shadow-2xs hover:scale-105 active:scale-95 ${isSelected ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-600/30 ring-2 ring-indigo-400/30' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'}`;
 const displayOpt = opt.charAt(0).toUpperCase() + opt.slice(1);
-btn.innerHTML = ⁠<span>${displayOpt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : '<i class="fa-solid fa-plus text-[10px] text-slate-400"></i>'}⁠;
+btn.innerHTML = `<span>${displayOpt}</span> ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : '<i class="fa-solid fa-plus text-[10px] text-slate-400"></i>'}`;
 btn.addEventListener('click', (e) => {
 e.preventDefault();
 toggleOption(opt);
@@ -743,6 +753,7 @@ catDiv.appendChild(flexDiv);
 optionsContainer.appendChild(catDiv);
 }
 }
+
 function toggleOption(item) {
 const index = selectedIngredients.indexOf(item);
 if (index > -1) {
@@ -753,15 +764,16 @@ selectedIngredients.push(item);
 renderOptions();
 updateSummary();
 }
+
 function updateSummary() {
 const addr = inputAddress.value.trim();
 summaryAddress.textContent = addr ? addr : 'Sin especificar';
 summaryAddress.classList.toggle('italic', !addr);
-summaryCount.textContent = ⁠${selectedIngredients.length} elementos⁠;
-summaryPhotosCount.textContent = ⁠${uploadedPhotos.length} fotos⁠;
+summaryCount.textContent = `${selectedIngredients.length} elementos`;
+summaryPhotosCount.textContent = `${uploadedPhotos.length} fotos`;
 saveToStorage();
 }
-// Historial Local
+
 document.getElementById('btn-save-draft').addEventListener('click', () => {
 const addr = inputAddress.value.trim() || 'Comunidad sin nombre';
 const history = JSON.parse(localStorage.getItem('report_history') || '[]');
@@ -777,18 +789,19 @@ localStorage.setItem('report_history', JSON.stringify(history));
 renderHistoryList();
 showToast('Borrador guardado en el historial');
 });
+
 function renderHistoryList() {
 const listContainer = document.getElementById('history-list');
 const history = JSON.parse(localStorage.getItem('report_history') || '[]');
 if (history.length === 0) {
-listContainer.innerHTML = ⁠<p class="text-xs text-slate-400 italic">No hay informes guardados recientemente.</p>⁠;
+listContainer.innerHTML = `<p class="text-xs text-slate-400 italic">No hay informes guardados recientemente.</p>`;
 return;
 }
 listContainer.innerHTML = '';
 history.forEach((item, idx) => {
 const div = document.createElement('div');
 div.className = 'flex justify-between items-center p-2.5 bg-slate-50/80 dark:bg-slate-800/80 rounded-2xl text-xs border border-slate-200/60 dark:border-slate-700 shadow-2xs transition hover:border-indigo-300';
-div.innerHTML = ⁠<div class="overflow-hidden mr-2"> <p class="font-bold text-slate-700 dark:text-slate-200 truncate">${item.address}</p> <p class="text-[10px] text-slate-400">${item.date} • <span class="text-indigo-600 dark:text-indigo-400 font-semibold">${item.elements.length} elementos</span></p> </div> <button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-xl text-[10px] font-bold transition cursor-pointer shadow-2xs shrink-0">Cargar</button>⁠;
+div.innerHTML = `<div class="overflow-hidden mr-2"><p class="font-bold text-slate-700 dark:text-slate-200 truncate">${item.address}</p><p class="text-[10px] text-slate-400">${item.date} • <span class="text-indigo-600 dark:text-indigo-400 font-semibold">${item.elements.length} elementos</span></p></div><button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-xl text-[10px] font-bold transition cursor-pointer shadow-2xs shrink-0">Cargar</button>`;
 div.querySelector('button').addEventListener('click', () => {
 inputAddress.value = item.address;
 inputElevatorId.value = item.elevator || '';
@@ -800,36 +813,40 @@ showToast('Borrador cargado con éxito');
 listContainer.appendChild(div);
 });
 }
-// Generador Técnico Extenso y Profesional
+
 function generateTechnicalTexts() {
 const addr = inputAddress.value.trim() || 'la instalación del cliente';
 const elevatorId = inputElevatorId.value.trim() || 'No especificado';
 const status = inputStatus.value;
 modalAddress.textContent = addr;
 modalElevatorId.textContent = elevatorId;
-modalDateStatus.textContent = ⁠${summaryDate.textContent} — ${status}⁠;
+modalDateStatus.textContent = `${summaryDate.textContent} — ${status}`;
+
 if (selectedIngredients.length === 0) {
-reportDiagnostic.innerHTML = ⁠<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el diagnóstico.</p>⁠;
-reportRecommendations.innerHTML = ⁠<p class="italic text-slate-400">Sin recomendaciones aplicables por falta de incidencias registradas.</p>⁠;
+reportDiagnostic.innerHTML = `<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el diagnóstico.</p>`;
+reportRecommendations.innerHTML = `<p class="italic text-slate-400">Sin recomendaciones aplicables por falta de incidencias registradas.</p>`;
 reportBudgetSection.classList.add('hidden');
 return;
 }
-let diagHTML = ⁠<p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita rigurosa de inspección, verificación funcional y análisis de averías en el aparato elevador con número de fábrica <strong>${elevatorId}</strong>, ubicado en <strong>${addr}</strong>. Tras someter los subsistemas mecánicos y eléctricos a comprobaciones instrumentales, se emite el presente dictamen técnico detallado:</p> <div class="space-y-3">⁠;
-let recHTML = ⁠<p class="mb-3">Con el objetivo primordial de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (Directiva de Ascensores y normas armonizadas UNE-EN 81), mitigar riesgos potenciales de accidentes y asegurar la máxima fiabilidad operativa para los usuarios de la comunidad, se establecen las siguientes actuaciones correctoras y directrices técnicas:</p> <div class="space-y-3">⁠;
+
+let diagHTML = `<p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita rigurosa de inspección, verificación funcional y análisis de averías en el aparato elevador con número de fábrica <strong>${elevatorId}</strong>, ubicado en <strong>${addr}</strong>. Tras someter los subsistemas mecánicos y eléctricos a comprobaciones instrumentales, se emite el presente dictamen técnico detallado:</p><div class="space-y-3">`;
+let recHTML = `<p class="mb-3">Con el objetivo primordial de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (Directiva de Ascensores y normas armonizadas UNE-EN 81), mitigar riesgos potenciales de accidentes y asegurar la máxima fiabilidad operativa para los usuarios de la comunidad, se establecen las siguientes actuaciones correctoras y directrices técnicas:</p><div class="space-y-3">`;
+
 selectedIngredients.forEach(item => {
 const formatted = item.charAt(0).toUpperCase() + item.slice(1);
 const info = detailedKnowledgeBase[item] || {
 func: "Garantizar la correcta transmisión de señales o soporte estructural dentro de la cadena de servicio del ascensor.",
 damage: "Comportamiento anómalo en el bucle de control, pudiendo desencadenar paradas de seguridad o desgaste prematuro."
 };
-diagHTML += ⁠<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"> <p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 text-xs"></i> Incidencia en Componente: ${formatted}</p> <p class="text-slate-700 mb-1"><strong>Función principal:</strong> ${info.func}</p> <p class="text-slate-700"><strong>Análisis del daño y afectación:</strong> Se ha diagnosticado ${info.damage}. Esta anomalía compromete directamente la estabilidad operativa del equipo y exige intervención correctiva inmediata para evitar daños mayores en componentes adyacentes.</p> </div>⁠;
-recHTML += ⁠<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"> <p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i> Actuación sobre: ${formatted}</p> <p class="text-slate-700">Se procede a la sustitución, calibración y ajuste mecánico/eléctrico de precisión de este elemento. Se verifica continuidad, aislamiento, apriete de bornes y tolerancias geométricas conforme a las especificaciones originales del fabricante, dejando el sistema en estado de <strong>${status}</strong>.</p> </div>⁠;
+diagHTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 text-xs"></i> Incidencia en Componente: ${formatted}</p><p class="text-slate-700 mb-1"><strong>Función principal:</strong> ${info.func}</p><p class="text-slate-700"><strong>Análisis del daño y afectación:</strong> Se ha diagnosticado ${info.damage}. Esta anomalía compromete directamente la estabilidad operativa del equipo y exige intervención correctiva inmediata para evitar daños mayores en componentes adyacentes.</p></div>`;
+recHTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i> Actuación sobre: ${formatted}</p><p class="text-slate-700">Se procede a la sustitución, calibración y ajuste mecánico/eléctrico de precisión de este elemento. Se verifica continuidad, aislamiento, apriete de bornes y tolerancias geométricas conforme a las especificaciones originales del fabricante, dejando el sistema en estado de <strong>${status}</strong>.</p></div>`;
 });
-diagHTML += ⁠</div>⁠;
-recHTML += ⁠</div>⁠;
+
+diagHTML += `</div>`;
+recHTML += `</div>`;
 reportDiagnostic.innerHTML = diagHTML;
 reportRecommendations.innerHTML = recHTML;
-// Presupuesto
+
 if (checkBudget.checked) {
 reportBudgetSection.classList.remove('hidden');
 const hours = parseFloat(inputHours.value) || 0;
@@ -845,7 +862,7 @@ document.getElementById('bud-total').textContent = total.toFixed(2) + ' €';
 reportBudgetSection.classList.add('hidden');
 }
 }
-// Gestión de fotos
+
 inputPhotos.addEventListener('change', (e) => {
 const files = Array.from(e.target.files);
 files.forEach(file => {
@@ -859,6 +876,7 @@ reader.readAsDataURL(file);
 });
 inputPhotos.value = '';
 });
+
 function renderPhotosPreviews() {
 photosPreviewContainer.innerHTML = '';
 reportPhotosGrid.innerHTML = '';
@@ -870,25 +888,27 @@ reportPhotosSection.classList.add('hidden');
 uploadedPhotos.forEach((photo, index) => {
 const thumb = document.createElement('div');
 thumb.className = 'relative w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 shadow-2xs group';
-thumb.innerHTML = ⁠<img src="${photo}" class="w-full h-full object-cover"> <button type="button" class="absolute top-1 right-1 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-80 hover:opacity-100 transition cursor-pointer shadow-md"> <i class="fa-solid fa-xmark"></i> </button>⁠;
+thumb.innerHTML = `<img src="${photo}" class="w-full h-full object-cover"><button type="button" class="absolute top-1 right-1 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-80 hover:opacity-100 transition cursor-pointer shadow-md"><i class="fa-solid fa-xmark"></i></button>`;
 thumb.querySelector('button').addEventListener('click', () => {
 uploadedPhotos.splice(index, 1);
 renderPhotosPreviews();
 updateSummary();
 });
 photosPreviewContainer.appendChild(thumb);
+
 const reportImg = document.createElement('div');
 reportImg.className = 'border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 p-2 shadow-2xs';
-reportImg.innerHTML = ⁠<img src="${photo}" class="w-full h-32 object-cover rounded-xl"> <p class="text-[10px] text-slate-500 text-center mt-1.5 font-mono font-bold">Anexo Fotográfico 0${index + 1}</p>⁠;
+reportImg.innerHTML = `<img src="${photo}" class="w-full h-32 object-cover rounded-xl"><p class="text-[10px] text-slate-500 text-center mt-1.5 font-mono font-bold">Anexo Fotográfico 0${index + 1}</p>`;
 reportPhotosGrid.appendChild(reportImg);
 });
 }
-// Eventos de entrada
+
 inputAddress.addEventListener('input', updateSummary);
 inputElevatorId.addEventListener('input', updateSummary);
 inputWhatsapp.addEventListener('input', updateSummary);
 inputEmail.addEventListener('input', updateSummary);
 inputDate.addEventListener('change', updateDateDisplay);
+
 btnAddCustom.addEventListener('click', (e) => {
 e.preventDefault();
 const val = customInput.value.trim();
@@ -900,12 +920,14 @@ updateSummary();
 showToast('Elemento o nota añadida');
 }
 });
+
 customInput.addEventListener('keypress', (e) => {
 if (e.key === 'Enter') {
 e.preventDefault();
 btnAddCustom.click();
 }
 });
+
 btnReset.addEventListener('click', () => {
 selectedIngredients = [];
 uploadedPhotos = [];
@@ -916,31 +938,33 @@ initApp();
 renderPhotosPreviews();
 showToast('Formulario reiniciado', 'warning');
 });
-// Modal
+
 const triggerOpenPreview = () => {
 generateTechnicalTexts();
 previewModal.classList.remove('hidden');
 };
 btnOpenPreview.addEventListener('click', triggerOpenPreview);
 mobileBtnPreview.addEventListener('click', triggerOpenPreview);
+
 const closeModal = () => previewModal.classList.add('hidden');
 btnCloseModal.addEventListener('click', closeModal);
 btnCloseModal2.addEventListener('click', closeModal);
-// Exportar Word (.doc) con Logos e información completa
+
 btnDownloadWord.addEventListener('click', () => {
 const address = inputAddress.value.trim() || 'Sin_especificar';
 const dateStr = summaryDate.textContent;
 generateTechnicalTexts();
 const diagText = reportDiagnostic.innerHTML;
 const recText = reportRecommendations.innerHTML;
+
 let htmlContent = `
 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
 <head><meta charset='utf-8'><title>Informe Técnico de Ascensores</title></head>
 <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 25px;">
 <table width="100%" style="border-bottom: 2px solid #6366f1; padding-bottom: 10px; margin-bottom: 20px;">
 <tr>
-<td><img src="logo.jpeg" width="60" height="60" style="vertical-align: middle;"/></td>
-<td style="text-align: right;"><h2 style="color: #1e1b4b; margin: 0;">INFORME TÉCNICO DE ASCENSORES</h2></td>
+<td><div style="font-size: 24px; font-weight: bold; color: #312e81;">ASCENSORES SAT</div></td>
+<td style="text-align: right;"><h2 style="color: #1e1b4b; margin: 0;">INFORME TÉCNICO</h2></td>
 </tr>
 </table>
 <p><strong>Comunidad:</strong> ${address}</p>
@@ -950,14 +974,10 @@ let htmlContent = `
 <div>${diagText}</div>
 <h3 style="color: #312e81; margin-top: 20px;">2. Acciones Correctoras y Recomendaciones</h3>
 <div>${recText}</div>
-
-
-
-<table width="100%" style="border-top: 1px solid #cbd5e1; padding-top: 20px; text-align: center;">
+<table width="100%" style="border-top: 1px solid #cbd5e1; padding-top: 20px; text-align: center; margin-top: 40px;">
 <tr>
 <td>
-<img src="logo.jpeg" width="40" height="40" style="margin-bottom: 5px;"/>
-<p style="font-size: 11px; color: #666; margin: 0;">Técnico Especialista Autorizado</p>
+<p style="font-size: 11px; color: #666; margin: 0;">Técnico Especialista Autorizado — Servicio Oficial de Mantenimiento</p>
 </td>
 </tr>
 </table>
@@ -968,14 +988,14 @@ const blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword' });
 const url = URL.createObjectURL(blob);
 const a = document.createElement('a');
 a.href = url;
-a.download = ⁠Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.doc⁠;
+a.download = `Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
 document.body.appendChild(a);
 a.click();
 document.body.removeChild(a);
 URL.revokeObjectURL(url);
 showToast('Documento Word descargado');
 });
-// Exportar PDF
+
 const handlePdfExport = () => {
 generateTechnicalTexts();
 previewModal.classList.remove('hidden');
@@ -983,21 +1003,22 @@ setTimeout(() => {
 const element = document.getElementById('printable-report');
 const address = inputAddress.value.trim() || 'informe_ascensor';
 const opt = {
-margin:       10,
-filename:     ⁠Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.pdf⁠,
-image:        { type: 'jpeg', quality: 0.98 },
-html2canvas:  { scale: 2, useCORS: true, logging: false },
-jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+margin: 10,
+filename: `Informe_Tecnico_${address.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
+image: { type: 'jpeg', quality: 0.98 },
+html2canvas: { scale: 2, useCORS: true, logging: false },
+jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
 };
 html2pdf().from(element).set(opt).save().then(() => {
 showToast('PDF generado con éxito');
 });
 }, 300);
 };
+
 btnDownloadPdf.addEventListener('click', handlePdfExport);
 btnModalDownloadPdf.addEventListener('click', handlePdfExport);
 mobileBtnPdf.addEventListener('click', handlePdfExport);
-// Envío por WhatsApp
+
 const handleWhatsappSend = () => {
 const phone = inputWhatsapp.value.trim();
 if (!phone) {
@@ -1005,12 +1026,13 @@ alert('Por favor, introduce un número de teléfono de WhatsApp válido en el pa
 return;
 }
 const addr = inputAddress.value.trim() || 'la comunidad';
-const text = encodeURIComponent(⁠Hola, le adjunto el resumen del Informe Técnico de Ascensores para la comunidad en ${addr}. Estado del equipo: ${inputStatus.value}. Elementos revisados: ${selectedIngredients.join(', ')}.⁠);
-window.open(⁠https://wa.me/${phone}?text=${text}⁠, '_blank');
+const text = encodeURIComponent(`Hola, le adjunto el resumen del Informe Técnico de Ascensores para la comunidad en ${addr}. Estado del equipo: ${inputStatus.value}. Elementos revisados: ${selectedIngredients.join(', ')}.`);
+window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 };
+
 btnSendWhatsapp.addEventListener('click', handleWhatsappSend);
 mobileBtnWhatsapp.addEventListener('click', handleWhatsappSend);
-// Envío por Correo Electrónico
+
 btnSendEmail.addEventListener('click', () => {
 const email = inputEmail.value.trim();
 if (!email) {
@@ -1018,11 +1040,13 @@ alert('Por favor, introduce una dirección de correo electrónico en el panel iz
 return;
 }
 const addr = inputAddress.value.trim() || 'la comunidad';
-const subject = encodeURIComponent(⁠Informe Técnico de Ascensor - ${addr}⁠);
-const body = encodeURIComponent(⁠Estimado administrador / cliente,\n\nAdjunto los detalles de la intervención técnica realizada en ${addr}.\nFecha: ${summaryDate.textContent}\nEstado: ${inputStatus.value}\nElementos revisados: ${selectedIngredients.join(', ')}\n\nAtentamente,\nServicio Técnico⁠);
-window.open(⁠mailto:${email}?subject=${subject}&body=${body}⁠);
+const subject = encodeURIComponent(`Informe Técnico de Ascensor - ${addr}`);
+const body = encodeURIComponent(`Estimado administrador / cliente,\n\nAdjunto los detalles de la intervención técnica realizada en ${addr}.\nFecha: ${summaryDate.textContent}\nEstado: ${inputStatus.value}\nElementos revisados: ${selectedIngredients.join(', ')}\n\nAtentamente,\nServicio Técnico`);
+window.open(`mailto:${email}?subject=${subject}&body=${body}`);
 });
-window.onload = initApp;
+
+// Inicialización garantizada al cargar la ventana
+window.addEventListener('DOMContentLoaded', initApp);
 </script>
 </body>
 </html>
