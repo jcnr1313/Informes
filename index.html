@@ -398,7 +398,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </button>
 </div>
 
-<!-- MODAL DE VISTA PREVIA DETALLADA (Sin referencia superior, sin firma, sin texto de técnico inferior) -->
+<!-- MODAL DE VISTA PREVIA DETALLADA -->
 <div id="preview-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 hidden animate-fadeIn">
 <div class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800">
 <!-- Cabecera del Modal -->
@@ -419,7 +419,7 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 
 <!-- Cuerpo Imprimible / Exportable -->
 <div id="printable-report" class="p-8 sm:p-12 overflow-y-auto space-y-8 bg-white text-slate-800 flex-1">
-<!-- Cabecera Documento (Logo arriba a la derecha, sin referencia arriba) -->
+<!-- Cabecera Documento -->
 <div class="border-b-2 border-indigo-950/10 pb-6 flex justify-between items-center">
 <div class="flex items-center gap-4">
 <div class="w-16 h-16 bg-indigo-900 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm">
@@ -431,7 +431,6 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 </div>
 <div class="text-right">
-<!-- Logotipo Arriba a la Derecha -->
 <img src="logo.jpeg" alt="Logo Empresa" class="h-16 w-auto max-w-[120px] object-contain ml-auto rounded-xl shadow-xs" onerror="this.style.display='none'">
 </div>
 </div>
@@ -452,24 +451,39 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 </div>
 </div>
 
-<!-- Redacción Generada Extensa -->
+<!-- Redacción Generada Extensa y Profesional -->
 <div class="space-y-4">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
-<i class="fa-solid fa-stethoscope text-indigo-600"></i> 1. Diagnóstico Técnico Detallado y Análisis de Incidencias
+<i class="fa-solid fa-stethoscope text-indigo-600"></i> 1. Inspección Instrumental y Verificación de Subsistemas
 </h4>
-<div id="report-diagnostic" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
+<div id="report-section-1" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
 </div>
+
 <div class="space-y-4">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
-<i class="fa-solid fa-screwdriver-wrench text-indigo-600"></i> 2. Acciones Correctoras, Criterios Normativos y Recomendaciones
+<i class="fa-solid fa-microchip text-indigo-600"></i> 2. Análisis Técnico Exhaustivo de la Anomalía y Diagnóstico
 </h4>
-<div id="report-recommendations" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
+<div id="report-section-2" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
+</div>
+
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
+<i class="fa-solid fa-screwdriver-wrench text-indigo-600"></i> 3. Acciones Correctoras, Criterios Normativos y Calibración
+</h4>
+<div id="report-section-3" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
+</div>
+
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
+<i class="fa-solid fa-square-check text-indigo-600"></i> 4. Dictamen Final y Garantía Operativa del Equipo
+</h4>
+<div id="report-section-4" class="text-xs text-slate-700 leading-relaxed bg-white p-2 space-y-3"></div>
 </div>
 
 <!-- Sección de Presupuesto (Si está activo) -->
 <div id="report-budget-section" class="space-y-4 hidden">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
-<i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> 3. Desglose Económico de Intervención / Presupuesto
+<i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> 5. Desglose Económico de Intervención / Presupuesto
 </h4>
 <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-xs space-y-2.5">
 <div class="flex justify-between"><span>Mano de obra (<span id="bud-hours">0</span>h):</span> <span id="bud-cost-labor" class="font-bold">0.00 €</span></div>
@@ -481,16 +495,15 @@ class="w-full px-3.5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 d
 <!-- Sección de Fotos -->
 <div id="report-photos-section" class="space-y-4 hidden">
 <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-100 pb-2 flex items-center gap-2">
-<i class="fa-solid fa-images text-indigo-600"></i> 4. Registro Fotográfico de la Intervención
+<i class="fa-solid fa-images text-indigo-600"></i> Registro Fotográfico de la Intervención
 </h4>
 <div id="report-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2"></div>
 </div>
 
-<!-- Pie de Documento con Logo Centrado abajo (Sin firma y sin texto de técnico autorizado) -->
+<!-- Pie de Documento -->
 <div class="pt-10 border-t border-slate-200 text-xs text-slate-500 flex flex-col items-center justify-center gap-3 mt-10 text-center">
-<!-- Logotipo Abajo al Medio -->
 <img src="logo.jpeg" alt="Logo Empresa" class="h-12 w-auto max-w-[100px] object-contain rounded-lg shadow-xs my-1" onerror="this.style.display='none'">
-<p class="text-[10px] text-slate-400 mt-0.5">Documento generado conforme a la normativa de seguridad aplicable en ascensores</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Documento emitido por técnico especialista conforme a la normativa de seguridad aplicable en aparatos elevadores</p>
 </div>
 </div>
 
@@ -603,8 +616,10 @@ const summaryPhotosCount = document.getElementById('summary-photos-count');
 const modalAddress = document.getElementById('modal-address');
 const modalElevatorId = document.getElementById('modal-elevator-id');
 const modalDateStatus = document.getElementById('modal-date-status');
-const reportDiagnostic = document.getElementById('report-diagnostic');
-const reportRecommendations = document.getElementById('report-recommendations');
+const reportSection1 = document.getElementById('report-section-1');
+const reportSection2 = document.getElementById('report-section-2');
+const reportSection3 = document.getElementById('report-section-3');
+const reportSection4 = document.getElementById('report-section-4');
 const reportBudgetSection = document.getElementById('report-budget-section');
 const reportPhotosSection = document.getElementById('report-photos-section');
 const reportPhotosGrid = document.getElementById('report-photos-grid');
@@ -745,7 +760,6 @@ summaryDate.textContent = formatted;
 }
 }
 
-// Renderizado con cuadro de diálogo flotante al pulsar la 'i'
 function renderOptions() {
 optionsContainer.innerHTML = '';
 for (const [category, items] of Object.entries(categorizedOptions)) {
@@ -768,7 +782,6 @@ e.preventDefault();
 toggleOption(opt);
 });
 
-// Botón 'i' que abre el cuadro de diálogo flotante elegante
 const infoBtn = document.createElement('button');
 infoBtn.type = 'button';
 infoBtn.className = `px-2 py-1.5 rounded-r-xl text-xs border-y border-r transition-all cursor-pointer flex items-center justify-center ${isSelected ? 'bg-indigo-700 text-indigo-200 border-indigo-600' : 'bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-slate-600'}`;
@@ -859,6 +872,7 @@ listContainer.appendChild(div);
 });
 }
 
+// Generador de textos técnicos altamente avanzados y profesionales
 function generateTechnicalTexts() {
 const addr = inputAddress.value.trim() || 'la instalación del cliente';
 const elevatorId = inputElevatorId.value.trim() || 'No especificado';
@@ -868,29 +882,49 @@ modalElevatorId.textContent = elevatorId;
 modalDateStatus.textContent = `${summaryDate.textContent} — ${status}`;
 
 if (selectedIngredients.length === 0) {
-reportDiagnostic.innerHTML = `<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el diagnóstico.</p>`;
-reportRecommendations.innerHTML = `<p class="italic text-slate-400">Sin recomendaciones aplicables por falta de incidencias registradas.</p>`;
+reportSection1.innerHTML = `<p class="italic text-slate-400">No se han seleccionado elementos ni incidencias para redactar el informe técnico.</p>`;
+reportSection2.innerHTML = `<p class="italic text-slate-400">Sin datos de diagnóstico registrados.</p>`;
+reportSection3.innerHTML = `<p class="italic text-slate-400">Sin actuaciones correctoras aplicables.</p>`;
+reportSection4.innerHTML = `<p class="italic text-slate-400">Sin dictamen operativo disponible.</p>`;
 reportBudgetSection.classList.add('hidden');
 return;
 }
 
-let diagHTML = `<p class="mb-3">En el día de la fecha, personal técnico especializado ha llevado a cabo una visita rigurosa de inspección, verificación funcional y análisis de averías en el ascensor <strong>${elevatorId}</strong>, ubicado en <strong>${addr}</strong>. Tras someter los subsistemas mecánicos y eléctricos a comprobaciones instrumentales, se emite el presente dictamen técnico detallado:</p><div class="space-y-3">`;
-let recHTML = `<p class="mb-3">Con el objetivo primordial de garantizar el cumplimiento estricto de las normativas vigentes de seguridad en ascensores (Directiva de Ascensores y normas armonizadas UNE-EN 81), mitigar riesgos potenciales de accidentes y asegurar la máxima fiabilidad operativa para los usuarios de la comunidad, se establecen las siguientes actuaciones correctoras y directrices técnicas:</p><div class="space-y-3">`;
+// Apartado 1: Inspección Instrumental
+let sec1HTML = `<p class="mb-2">En el día de la fecha, el técnico especialista adscrito al Servicio de Asistencia Técnica se ha personado en las instalaciones de <strong>${addr}</strong> para proceder a la intervención sobre el aparato elevador designado con el identificador <strong>${elevatorId}</strong>.</p>`;
+sec1HTML += `<p class="mb-2">Se han ejecutado de forma rigurosa las comprobaciones instrumentales preceptivas utilizando instrumentación de medida calibrada (multímetro digital de true RMS, medidores de aislamiento y tacómetro óptico). Las labores iniciales han comprendido:</p>`;
+sec1HTML += `<ul class="list-disc pl-5 space-y-1 mb-2"><li>Verificación del bucle completo de seguridades (puertas de recinto, puertas de cabina, paracaídas y seguridades de foso/poleas).</li><li>Medición de tensiones de alimentación en corriente alterna y continua en los bornes de entrada y salida del cuadro de maniobra.</li><li>Comprobación del estado de apriete en embarrados de potencia y bornes de control, descartando falsos contactos o microcortes por fatiga térmica.</li><li>Inspección visual y métrica de los elementos mecánicos de guiado, suspensión y tracción conforme a las directrices de mantenimiento preventivo y correctivo.</li></ul>`;
+reportSection1.innerHTML = sec1HTML;
+
+// Apartado 2: Análisis Técnico de la Anomalía
+let sec2HTML = `<p class="mb-2">Como resultado del análisis instrumental y las pruebas funcionales realizadas en los diferentes subsistemas del ascensor, se han identificado las siguientes disfunciones técnicas:</p><div class="space-y-3">`;
 
 selectedIngredients.forEach(item => {
 const formatted = item.charAt(0).toUpperCase() + item.slice(1);
 const info = detailedKnowledgeBase[item] || {
-func: "Garantizar la correcta transmisión de señales o soporte estructural dentro de la cadena de servicio del ascensor.",
-damage: "Comportamiento anómalo en el bucle de control, pudiendo desencadenar paradas de seguridad o desgaste prematuro."
+func: "Garantizar la correcta transmisión de señales lógicas o soporte estructural en la cadena cinemática y de control.",
+damage: "Comportamiento anómalo en el bucle de control, pudiendo desencadenar paradas de seguridad imprevistas o fatiga en elementos adyacentes."
 };
-diagHTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 text-xs"></i> Incidencia en Componente: ${formatted}</p><p class="text-slate-700 mb-1"><strong>Función principal:</strong> ${info.func}</p><p class="text-slate-700"><strong>Análisis del daño y afectación:</strong> Se ha diagnosticado ${info.damage}. Esta anomalía compromete directamente la estabilidad operativa del equipo y exige intervención correctiva inmediata para evitar daños mayores en componentes adyacentes.</p></div>`;
-recHTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i> Actuación sobre: ${formatted}</p><p class="text-slate-700">Se procede a la sustitución, calibración y ajuste mecánico/eléctrico de precisión de este elemento. Se verifica continuidad, aislamiento, apriete de bornes y tolerancias geométricas conforme a las especificaciones originales del fabricante, dejando el sistema en estado de <strong>${status}</strong>.</p></div>`;
+sec2HTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 text-xs"></i> Componente Afectado: ${formatted}</p><p class="text-slate-700 mb-1"><strong>Función técnica en el sistema:</strong> ${info.func}</p><p class="text-slate-700"><strong>Diagnóstico y afectación técnica:</strong> Se ha diagnosticado ${info.damage}. Esta anomalía provoca derivaciones en el circuito e intermitencias lógicas que comprometen la estabilidad operativa del equipo bajo condiciones normales de servicio.</p></div>`;
 });
+sec2HTML += `</div>`;
+reportSection2.innerHTML = sec2HTML;
 
-diagHTML += `</div>`;
-recHTML += `</div>`;
-reportDiagnostic.innerHTML = diagHTML;
-reportRecommendations.innerHTML = recHTML;
+// Apartado 3: Acciones Correctoras y Normativa
+let sec3HTML = `<p class="mb-2">Para solventar de forma definitiva las incidencias descritas y asegurar el cumplimiento estricto de las directrices normativas aplicables (Normas Armonizadas UNE-EN 81 para la construcción y instalación de ascensores, así como los reglamentos de seguridad vigentes), el técnico especialista ha ejecutado las siguientes actuaciones correctoras:</p><div class="space-y-3">`;
+
+selectedIngredients.forEach(item => {
+const formatted = item.charAt(0).toUpperCase() + item.slice(1);
+sec3HTML += `<div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><p class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i> Intervención Realizada en: ${formatted}</p><p class="text-slate-700">Se ha procedido al desmontaje, limpieza exhaustiva de bornes, sustitución o calibración de precisión del componente. Posteriormente se han reajustado los parámetros de funcionamiento en el sistema de control, verificando aislamiento galvánico, continuidad en los contactos eléctricos y tolerancias mecánicas óptimas según los estándares del fabricante.</p></div>`;
+});
+sec3HTML += `</div>`;
+reportSection3.innerHTML = sec3HTML;
+
+// Apartado 4: Dictamen Final y Garantía
+let sec4HTML = `<p class="mb-2">Una vez finalizadas todas las operaciones de reparación, ajuste y calibración, se ha sometido el aparato elevador a un ciclo completo de pruebas de carga en vacío y ensayos de seguridades (incluyendo rearme de seguridades, comprobación de nivelación milimétrica en todas las plantas y testeo de operadores de puertas).</p>`;
+sec4HTML += `<p class="mb-2">El equipo ha superado satisfactoriamente los protocolos de verificación técnica, quedando en estado de <strong>${status}</strong> y plenamente apto para su utilización segura por los usuarios de la comunidad.</p>`;
+sec4HTML += `<p class="text-[11px] text-slate-500 italic mt-2">Nota: Se recomienda mantener el plan de mantenimiento preventivo periódico para garantizar la longevidad de los componentes sustituidos y evitar futuras paradas imprevistas.</p>`;
+reportSection4.innerHTML = sec4HTML;
 
 if (checkBudget.checked) {
 reportBudgetSection.classList.remove('hidden');
@@ -999,8 +1033,6 @@ btnDownloadWord.addEventListener('click', () => {
 const address = inputAddress.value.trim() || 'Sin_especificar';
 const dateStr = summaryDate.textContent;
 generateTechnicalTexts();
-const diagText = reportDiagnostic.innerHTML;
-const recText = reportRecommendations.innerHTML;
 
 let htmlContent = `
 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
@@ -1009,16 +1041,24 @@ let htmlContent = `
 <table width="100%" style="border-bottom: 2px solid #6366f1; padding-bottom: 10px; margin-bottom: 20px;">
 <tr>
 <td><div style="font-size: 24px; font-weight: bold; color: #312e81;">ASCENSORES SAT</div></td>
-<td style="text-align: right;"><h2 style="color: #1e1b4b; margin: 0;">INFORME TÉCNICO</h2></td>
+<td style="text-align: right;"><h2 style="color: #1e1b4b; margin: 0;">INFORME TÉCNICO OFICIAL</h2></td>
 </tr>
 </table>
 <p><strong>Comunidad:</strong> ${address}</p>
 <p><strong>Ascensor:</strong> ${inputElevatorId.value || 'N/A'}</p>
 <p><strong>Fecha del Servicio:</strong> ${dateStr} — Estado: ${inputStatus.value}</p>
-<h3 style="color: #312e81; margin-top: 20px;">1. Diagnóstico Técnico Detallado</h3>
-<div>${diagText}</div>
-<h3 style="color: #312e81; margin-top: 20px;">2. Acciones Correctoras y Recomendaciones</h3>
-<div>${recText}</div>
+
+<h3 style="color: #312e81; margin-top: 20px;">1. Inspección Instrumental y Verificación de Subsistemas</h3>
+<div>${reportSection1.innerHTML}</div>
+
+<h3 style="color: #312e81; margin-top: 20px;">2. Análisis Técnico Exhaustivo de la Anomalía y Diagnóstico</h3>
+<div>${reportSection2.innerHTML}</div>
+
+<h3 style="color: #312e81; margin-top: 20px;">3. Acciones Correctoras, Criterios Normativos y Calibración</h3>
+<div>${reportSection3.innerHTML}</div>
+
+<h3 style="color: #312e81; margin-top: 20px;">4. Dictamen Final y Garantía Operativa del Equipo</h3>
+<div>${reportSection4.innerHTML}</div>
 </body>
 </html>
 `;
@@ -1064,7 +1104,7 @@ alert('Por favor, introduce un número de teléfono de WhatsApp válido en el pa
 return;
 }
 const addr = inputAddress.value.trim() || 'la comunidad';
-const text = encodeURIComponent(`Hola, le adjunto el resumen del Informe Técnico de Ascensores para la comunidad en ${addr}. Estado del equipo: ${inputStatus.value}. Elementos revisados: ${selectedIngredients.join(', ')}.`);
+const text = encodeURIComponent(`Hola, le adjunto el resumen del Informe Técnico Oficial de Ascensores para la comunidad en ${addr}. Estado del equipo: ${inputStatus.value}. Elementos revisados: ${selectedIngredients.join(', ')}.`);
 window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 };
 
@@ -1079,7 +1119,7 @@ return;
 }
 const addr = inputAddress.value.trim() || 'la comunidad';
 const subject = encodeURIComponent(`Informe Técnico de Ascensor - ${addr}`);
-const body = encodeURIComponent(`Estimado administrador / cliente,\n\nAdjunto los detalles de la intervención técnica realizada en ${addr}.\nFecha: ${summaryDate.textContent}\nEstado: ${inputStatus.value}\nElementos revisados: ${selectedIngredients.join(', ')}\n\nAtentamente,\nServicio Técnico`);
+const body = encodeURIComponent(`Estimado administrador / cliente,\n\nAdjunto los detalles de la intervención técnica avanzada realizada en ${addr}.\nFecha: ${summaryDate.textContent}\nEstado: ${inputStatus.value}\nElementos revisados: ${selectedIngredients.join(', ')}\n\nAtentamente,\nServicio Técnico Especializado`);
 window.open(`mailto:${email}?subject=${subject}&body=${body}`);
 });
 
